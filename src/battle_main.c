@@ -2050,14 +2050,14 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 u32 otIdType = OT_ID_RANDOM_NO_SHINY;
                 u32 fixedOtId = 0;
                 u8 level;
-				if (whichShadow > 0 && !FlagGet(SHADOW_FLAGS_SNAG_BLOCK_1_START + whichShadow))
-					{
-						partyData = &sShadowList[whichShadow - i];
-					}
-				if (&partyData[i].species == NULL)
-					break;
+                if (whichShadow > 0 && !FlagGet(SHADOW_FLAGS_SNAG_BLOCK_1_START + whichShadow))
+                    {
+					    partyData = &sShadowList[whichShadow - i];
+                    }
+                if (&partyData[i].species == NULL)
+                    break;
 
-				level = partyData[i].lvl;
+                level = partyData[i].lvl;
 
                 if (partyData[i].gender == TRAINER_MON_MALE)
                     personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, partyData[i].species);
