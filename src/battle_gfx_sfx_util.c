@@ -741,6 +741,7 @@ bool8 BattleLoadAllHealthBoxesGfx(u8 state)
                     LoadCompressedSpriteSheet(&sSpriteSheet_SafariHealthbox);
                 else
                     ShdwLoadHealthboxSprite();
+                    
                 ShdwLoadHealthboxPalette(0);
             }
             else if (state == 3)

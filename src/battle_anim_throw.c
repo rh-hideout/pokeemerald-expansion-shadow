@@ -2519,7 +2519,6 @@ void TryShinyAnimation(u8 battler, struct Pokemon *mon)
         }
     }
 
-
     gBattleSpritesDataPtr->healthBoxesData[battler].finishedShinyMonAnim = TRUE;
 }
 

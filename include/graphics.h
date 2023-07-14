@@ -9239,8 +9239,6 @@ extern const u32 gSummaryPage_BattleMoves_Tilemap[];
 extern const u32 gSummaryPage_ContestMoves_Tilemap[];
 extern const u16 gPPTextPalette[];
 extern const u32 gMoveTypes_Pal[];
-// Shadow
-extern const u32 gSummaryShadow_Gfx[];
 extern const u32 gSummaryShadow_Pal[];
 
 extern const u16 gSummaryScreen_MoveEffect_Battle_Tilemap[];
@@ -10303,7 +10301,6 @@ extern const u32 gBattleAnimBgPalette_ZMoveMountain[];
 extern const u32 gBattleAnimBgTilemap_ZMoveMountain[];
 extern const u32 gBattleAnimSpritePal_SteelBeam[];
 extern const u32 gBattleAnimBgPalette_SteelBeam[];
-
 extern const u32 gBattleAnimBgPalette_ShadowStorm[];
 
 extern const u32 gMetalShineGfx[];

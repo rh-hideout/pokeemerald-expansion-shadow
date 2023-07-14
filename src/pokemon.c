@@ -7244,7 +7244,7 @@ void RandomlyGivePartyPokerus(struct Pokemon *party)
             rnd2 &= 0xF3;
             rnd2++;
 
-            SetMonData(&party[rnd], MON_DATA_IS_SHADOW, &rnd2);
+            SetMonData(&party[rnd], MON_DATA_POKERUS, &rnd2);
         }
     }
 }
