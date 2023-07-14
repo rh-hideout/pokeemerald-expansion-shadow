@@ -1386,7 +1386,8 @@ static void Task_GiveExpToMon(u8 taskId)
     u8 battlerId = gTasks[taskId].tExpTask_battler;
     s32 gainedExp = GetTaskExpValue(taskId);
 
-    if ((IsDoubleBattle() == TRUE || monId != gBattlerPartyIndexes[battlerId])
+    if ((WhichBattleCoords(battlerId) == 1
+        || monId != gBattlerPartyIndexes[battlerId])
         || (monId == gBattlerPartyIndexes[battlerId] && GetMonData(&gPlayerParty[monId], MON_DATA_IS_SHADOW))) // Give exp without moving the expbar.
     {
         struct Pokemon *mon = &gPlayerParty[monId];
