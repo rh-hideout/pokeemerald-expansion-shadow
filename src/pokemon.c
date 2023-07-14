@@ -2314,6 +2314,9 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_FEEBAS - 1]        = ANIM_BOUNCE_ROTATE_TO_SIDES_SLOW,
     [SPECIES_MILOTIC - 1]       = ANIM_CIRCULAR_STRETCH_TWICE,
     [SPECIES_CASTFORM - 1]      = ANIM_H_SLIDE_WOBBLE,
+    [SPECIES_CASTFORM_SUNNY - 1] = ANIM_H_SLIDE_WOBBLE,
+    [SPECIES_CASTFORM_RAINY - 1] = ANIM_H_SLIDE_WOBBLE,
+    [SPECIES_CASTFORM_SNOWY - 1] = ANIM_H_SLIDE_WOBBLE,
     [SPECIES_KECLEON - 1]       = ANIM_FLICKER_INCREASING,
     [SPECIES_SHUPPET - 1]       = ANIM_V_SLIDE_WOBBLE,
     [SPECIES_BANETTE - 1]       = ANIM_CIRCULAR_STRETCH_TWICE,
@@ -2707,7 +2710,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_GUMSHOOS - 1]      = ANIM_H_SHAKE,
     [SPECIES_GRUBBIN - 1]       = ANIM_H_SLIDE,
     [SPECIES_CHARJABUG - 1]     = ANIM_SHAKE_FLASH_YELLOW_SLOW,
-    [SPECIES_VIKAVOLT - 1]      = ANIM_H_VIBRATE,
+    [SPECIES_VIKAVOLT - 1]      = ANIM_BOUNCE_ROTATE_TO_SIDES,
     [SPECIES_CRABRAWLER - 1]    = ANIM_V_SHAKE,
     [SPECIES_CRABOMINABLE - 1]  = ANIM_SHRINK_GROW_VIBRATE_FAST,
     [SPECIES_ORICORIO - 1]      = ANIM_CONCAVE_ARC_SMALL,
@@ -2726,9 +2729,9 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_LURANTIS - 1]      = ANIM_GROW_VIBRATE,
     [SPECIES_MORELULL - 1]      = ANIM_SHAKE_FLASH_YELLOW,
     [SPECIES_SHIINOTIC - 1]     = ANIM_SHAKE_GLOW_WHITE_SLOW,
-    [SPECIES_SALANDIT - 1]      = ANIM_SHAKE_GLOW_RED_SLOW,
+    [SPECIES_SALANDIT - 1]      = ANIM_GLOW_RED,
     [SPECIES_SALAZZLE - 1]      = ANIM_GROW_VIBRATE,
-    [SPECIES_STUFFUL - 1]       = ANIM_H_STRETCH,
+    [SPECIES_STUFFUL - 1]       = ANIM_V_SHAKE,
     [SPECIES_BEWEAR - 1]        = ANIM_H_STRETCH,
     [SPECIES_BOUNSWEET - 1]     = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_STEENEE - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
@@ -2753,7 +2756,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_DHELMISE - 1]      = ANIM_SWING_CONVEX,
     [SPECIES_JANGMO_O - 1]      = ANIM_H_STRETCH,
     [SPECIES_HAKAMO_O - 1]      = ANIM_H_STRETCH,
-    [SPECIES_KOMMO_O - 1]       = ANIM_V_SHAKE_TWICE,
+    [SPECIES_KOMMO_O - 1]       = ANIM_GROW_STUTTER_TWICE,
     [SPECIES_TAPU_KOKO - 1]     = ANIM_TRIANGLE_DOWN_TWICE,
     [SPECIES_TAPU_LELE - 1]     = ANIM_V_SLIDE_WOBBLE_SMALL,
     [SPECIES_TAPU_BULU - 1]     = ANIM_V_SHAKE_TWICE,
@@ -2792,9 +2795,9 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_INTELEON - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_SKWOVET - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_GREEDENT - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
-    [SPECIES_ROOKIDEE - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
-    [SPECIES_CORVISQUIRE - 1]   = ANIM_V_SQUISH_AND_BOUNCE,
-    [SPECIES_CORVIKNIGHT - 1]   = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_ROOKIDEE - 1]      = ANIM_H_VIBRATE,
+    [SPECIES_CORVISQUIRE - 1]   = ANIM_CIRCLE_INTO_BG,
+    [SPECIES_CORVIKNIGHT - 1]   = ANIM_H_VIBRATE,
     [SPECIES_BLIPBUG - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DOTTLER - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_ORBEETLE - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
@@ -2805,12 +2808,12 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_WOOLOO - 1]        = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_DUBWOOL - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_CHEWTLE - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
-    [SPECIES_DREDNAW - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_DREDNAW - 1]       = ANIM_GROW_VIBRATE,
     [SPECIES_YAMPER - 1]        = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_BOLTUND - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
-    [SPECIES_ROLYCOLY - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_ROLYCOLY - 1]      = ANIM_H_SLIDE_SLOW,
     [SPECIES_CARKOL - 1]        = ANIM_V_SQUISH_AND_BOUNCE,
-    [SPECIES_COALOSSAL - 1]     = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_COALOSSAL - 1]     = ANIM_GLOW_RED,
     [SPECIES_APPLIN - 1]        = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_FLAPPLE - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_APPLETUN - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
@@ -2821,7 +2824,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_BARRASKEWDA - 1]   = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_TOXEL - 1]         = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_TOXTRICITY - 1]    = ANIM_V_SQUISH_AND_BOUNCE,
-    [SPECIES_SIZZLIPEDE - 1]    = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_SIZZLIPEDE - 1]    = ANIM_H_VIBRATE,
     [SPECIES_CENTISKORCH - 1]   = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_CLOBBOPUS - 1]     = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_GRAPPLOCT - 1]     = ANIM_V_SQUISH_AND_BOUNCE,
@@ -2842,7 +2845,7 @@ const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_MILCERY - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_ALCREMIE - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_FALINKS - 1]       = ANIM_V_SQUISH_AND_BOUNCE,
-    [SPECIES_PINCURCHIN - 1]    = ANIM_V_SQUISH_AND_BOUNCE,
+    [SPECIES_PINCURCHIN - 1]    = ANIM_SHRINK_GROW_VIBRATE,
     [SPECIES_SNOM - 1]          = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_FROSMOTH - 1]      = ANIM_V_SQUISH_AND_BOUNCE,
     [SPECIES_STONJOURNER - 1]   = ANIM_V_SQUISH_AND_BOUNCE,
@@ -3501,7 +3504,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     checksum = CalculateBoxMonChecksum(boxMon);
     SetBoxMonData(boxMon, MON_DATA_CHECKSUM, &checksum);
     EncryptBoxMon(boxMon);
-    GetSpeciesName(speciesName, species);
+    StringCopy(speciesName, GetSpeciesName(species));
     SetBoxMonData(boxMon, MON_DATA_NICKNAME, speciesName);
     SetBoxMonData(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
     SetBoxMonData(boxMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
@@ -4066,12 +4069,19 @@ static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
     return checksum;
 }
 
+#if B_FRIENDSHIP_BOOST == TRUE
+#define CALC_FRIENDSHIP_BOOST() n = n + ((n * 10 * friendship) / (MAX_FRIENDSHIP * 100));
+#else
+#define CALC_FRIENDSHIP_BOOST()
+#endif
+
 #define CALC_STAT(base, iv, ev, statIndex, field)               \
 {                                                               \
     u8 baseStat = gSpeciesInfo[species].base;                   \
     s32 n = (((2 * baseStat + iv + ev / 4) * level) / 100) + 5; \
     u8 nature = GetNature(mon);                                 \
     n = ModifyStatByNature(nature, n, statIndex);               \
+    CALC_FRIENDSHIP_BOOST()                                     \
     SetMonData(mon, field, &n);                                 \
 }
 
@@ -4092,6 +4102,7 @@ void CalculateMonStats(struct Pokemon *mon)
     s32 spDefenseIV = GetMonData(mon, MON_DATA_SPDEF_IV, NULL);
     s32 spDefenseEV = GetMonData(mon, MON_DATA_SPDEF_EV, NULL);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u8 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
     s32 level = GetLevelFromMonExp(mon);
     s32 newMaxHP;
 
@@ -4462,6 +4473,11 @@ u8 GetGenderFromSpeciesAndPersonality(u16 species, u32 personality)
         return MON_MALE;
 }
 
+bool32 IsPersonalityFemale(u16 species, u32 personality)
+{
+    return GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE;
+}
+
 u32 GetUnownSpeciesId(u32 personality)
 {
     u16 unownLetter = GetUnownLetterByPersonality(personality);
@@ -4486,9 +4502,19 @@ void SetMultiuseSpriteTemplateToPokemon(u16 speciesTag, u8 battlerPosition)
     if (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_PLAYER_RIGHT)
         gMultiuseSpriteTemplate.anims = gAnims_MonPic;
     else if (speciesTag > SPECIES_SHINY_TAG)
-        gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag - SPECIES_SHINY_TAG];
+    {
+        if (gMonFrontAnimsPtrTable[speciesTag - SPECIES_SHINY_TAG] != NULL)
+            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag - SPECIES_SHINY_TAG];
+        else
+            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[SPECIES_NONE];
+    }
     else
-        gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag];
+    {
+        if (gMonFrontAnimsPtrTable[speciesTag] != NULL)
+            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[speciesTag];
+        else
+            gMultiuseSpriteTemplate.anims = gMonFrontAnimsPtrTable[SPECIES_NONE];
+    }
 }
 
 void SetMultiuseSpriteTemplateToTrainerBack(u16 trainerPicId, u8 battlerPosition)
@@ -5454,29 +5480,28 @@ u8 SendMonToPC(struct Pokemon* mon)
     return MON_CANT_GIVE;
 }
 
+u8 CalculatePartyCount(struct Pokemon *party)
+{
+    u32 partyCount = 0;
+
+    while (partyCount < PARTY_SIZE
+        && GetMonData(&party[partyCount], MON_DATA_SPECIES, NULL) != SPECIES_NONE)
+    {
+        partyCount++;
+    }
+    
+    return partyCount;
+}
+
 u8 CalculatePlayerPartyCount(void)
 {
-    gPlayerPartyCount = 0;
-
-    while (gPlayerPartyCount < PARTY_SIZE
-        && GetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_SPECIES, NULL) != SPECIES_NONE)
-    {
-        gPlayerPartyCount++;
-    }
-
+    gPlayerPartyCount = CalculatePartyCount(gPlayerParty);
     return gPlayerPartyCount;
 }
 
 u8 CalculateEnemyPartyCount(void)
 {
-    gEnemyPartyCount = 0;
-
-    while (gEnemyPartyCount < PARTY_SIZE
-        && GetMonData(&gEnemyParty[gEnemyPartyCount], MON_DATA_SPECIES, NULL) != SPECIES_NONE)
-    {
-        gEnemyPartyCount++;
-    }
-
+    gEnemyPartyCount = CalculatePartyCount(gEnemyParty);
     return gEnemyPartyCount;
 }
 
@@ -5620,22 +5645,9 @@ bool8 IsPokemonStorageFull(void)
     return TRUE;
 }
 
-void GetSpeciesName(u8 *name, u16 species)
+const u8 *GetSpeciesName(u16 species)
 {
-    s32 i;
-
-    for (i = 0; i <= POKEMON_NAME_LENGTH; i++)
-    {
-        if (species > NUM_SPECIES)
-            name[i] = gSpeciesNames[SPECIES_NONE][i];
-        else
-            name[i] = gSpeciesNames[species][i];
-
-        if (name[i] == EOS)
-            break;
-    }
-
-    name[i] = EOS;
+    return gSpeciesNames[SanitizeSpeciesId(species)];
 }
 
 u8 CalculatePPWithBonus(u16 move, u8 ppBonuses, u8 moveIndex)
@@ -6927,8 +6939,8 @@ void EvolutionRenameMon(struct Pokemon *mon, u16 oldSpecies, u16 newSpecies)
     u8 language;
     GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
     language = GetMonData(mon, MON_DATA_LANGUAGE, &language);
-    if (language == GAME_LANGUAGE && !StringCompare(gSpeciesNames[oldSpecies], gStringVar1))
-        SetMonData(mon, MON_DATA_NICKNAME, gSpeciesNames[newSpecies]);
+    if (language == GAME_LANGUAGE && !StringCompare(GetSpeciesName(oldSpecies), gStringVar1))
+        SetMonData(mon, MON_DATA_NICKNAME, GetSpeciesName(newSpecies));
 }
 
 // The below two functions determine which side of a multi battle the trainer battles on
@@ -7563,13 +7575,6 @@ bool32 IsSpeciesInHoennDex(u16 species)
         return TRUE;
 }
 
-void ClearBattleMonForms(void)
-{
-    int i;
-    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-        gBattleMonForms[i] = 0;
-}
-
 u16 GetBattleBGM(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE_GROUDON)
@@ -7687,17 +7692,21 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
     shinyValue = GET_SHINY_VALUE(otId, personality);
     if (shinyValue < SHINY_ODDS)
     {
-        if (ShouldShowFemaleDifferences(species, personality))
+        if (gMonShinyPaletteTableFemale[species].data != NULL && IsPersonalityFemale(species, personality))
             return gMonShinyPaletteTableFemale[species].data;
-        else
+        else if (gMonShinyPaletteTable[species].data != NULL)
             return gMonShinyPaletteTable[species].data;
+        else
+            return gMonShinyPaletteTable[SPECIES_NONE].data;
     }
     else
     {
-        if (ShouldShowFemaleDifferences(species, personality))
+        if (gMonPaletteTableFemale[species].data != NULL && IsPersonalityFemale(species, personality))
             return gMonPaletteTableFemale[species].data;
-        else
+        else if (gMonPaletteTable[species].data != NULL)
             return gMonPaletteTable[species].data;
+        else
+            return gMonPaletteTable[SPECIES_NONE].data;
     }
 }
 
@@ -7716,17 +7725,21 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
     shinyValue = GET_SHINY_VALUE(otId, personality);
     if (shinyValue < SHINY_ODDS)
     {
-        if (ShouldShowFemaleDifferences(species, personality))
+        if (gMonShinyPaletteTableFemale[species].data != NULL && IsPersonalityFemale(species, personality))
             return &gMonShinyPaletteTableFemale[species];
-        else
+        else if (gMonShinyPaletteTable[species].data != NULL)
             return &gMonShinyPaletteTable[species];
+        else
+            return &gMonShinyPaletteTable[SPECIES_NONE];
     }
     else
     {
-        if (ShouldShowFemaleDifferences(species, personality))
+        if (gMonPaletteTableFemale[species].data != NULL && IsPersonalityFemale(species, personality))
             return &gMonPaletteTableFemale[species];
-        else
+        else if (gMonPaletteTable[species].data != NULL)
             return &gMonPaletteTable[species];
+        else
+            return &gMonPaletteTable[SPECIES_NONE];
     }
 }
 
@@ -8551,11 +8564,16 @@ void TrySpecialOverworldEvo(void)
     SetMainCallback2(CB2_ReturnToField);
 }
 
-bool32 ShouldShowFemaleDifferences(u16 species, u32 personality)
+bool32 SpeciesHasGenderDifferences(u16 species)
 {
-    if (species >= NUM_SPECIES)
-        return FALSE;
-    return (gSpeciesInfo[species].flags & SPECIES_FLAG_GENDER_DIFFERENCE) && GetGenderFromSpeciesAndPersonality(species, personality) == MON_FEMALE;
+    if (gMonFrontPicTableFemale[species].data != NULL
+     || gMonPaletteTableFemale[species].data != NULL
+     || gMonBackPicTableFemale[species].data != NULL
+     || gMonShinyPaletteTableFemale[species].data != NULL
+     || gMonIconTableFemale[species] != NULL)
+        return TRUE;
+
+    return FALSE;
 }
 
 bool32 TryFormChange(u32 monId, u32 side, u16 method)
@@ -8581,6 +8599,19 @@ bool32 TryFormChange(u32 monId, u32 side, u16 method)
     }
 
     return FALSE;
+}
+
+u16 SanitizeSpeciesId(u16 species)
+{
+    if (species > NUM_SPECIES || !IsSpeciesEnabled(species))
+        return SPECIES_NONE;
+    else
+        return species;
+}
+
+bool32 IsSpeciesEnabled(u16 species)
+{
+    return gSpeciesInfo[species].baseHP > 0;
 }
 
 void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method)
