@@ -210,10 +210,31 @@ union __attribute__((packed, aligned(2))) NicknameShadowdata
     u8 nickname[POKEMON_NAME_LENGTH];
     struct Shadowdata
     {
+    	u8 shadowVar; // used for aggro levels (likelihood of entering Reverse Mode) as well as identifying Shadow Lugia's special case
         u8 isReverse;
         u16 heartValue;
         u16 heartMax;
     } shadowData;
+};
+
+enum {
+	SHADOW_AGGRO_NONE,
+	SHADOW_AGGRO_VERY_LOW,
+	SHADOW_AGGRO_LOW,
+	SHADOW_AGGRO_MEDIUM,
+	SHADOW_AGGRO_HIGH,
+	SHADOW_AGGRO_VERY_HIGH,
+	NUM_AGGRO_LEVELS
+};
+
+enum {
+	HEART_GAUGE_EMPTY,
+	HEART_SECTION_1,
+	HEART_SECTION_2,
+	HEART_SECTION_3,
+	HEART_SECTION_4,
+	HEART_GAUGE_FULL,
+	HEART_GAUGE_SECTIONS,
 };
 
 struct BoxPokemon
@@ -432,9 +453,12 @@ extern const u8 gStatStageRatios[MAX_STAT_STAGE + 1][2];
 extern const u16 gUnionRoomFacilityClasses[];
 extern const struct SpriteTemplate gBattlerSpriteTemplates[];
 extern const s8 gNatureStatTable[][5];
+extern const s8 gNatureHeartTable[][5];
+extern const u8 gShadowAggressionTable[][6];
 extern const u16 *const gFormSpeciesIdTables[NUM_SPECIES];
 extern const struct FormChange *const gFormChangeTablePointers[NUM_SPECIES];
 extern const u32 sExpCandyExperienceTable[];
+
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);
@@ -531,6 +555,7 @@ u16 GetLinkTrainerFlankId(u8 id);
 s32 GetBattlerMultiplayerId(u16 id);
 u8 GetTrainerEncounterMusicId(u16 trainerOpponentId);
 u16 ModifyStatByNature(u8 nature, u16 n, u8 statIndex);
+u16 ModifyHeartByNature(u8 nature, u16 heart, u8 methodIndex);
 void AdjustFriendship(struct Pokemon *mon, u8 event);
 void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies);
 u16 GetMonEVCount(struct Pokemon *mon);

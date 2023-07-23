@@ -1196,6 +1196,24 @@ static const u8 sForbiddenMoves[MOVES_COUNT] =
     [MOVE_WICKED_TORQUE] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_SLEEP_TALK | FORBIDDEN_INSTRUCT,
     [MOVE_WIDE_GUARD] = FORBIDDEN_METRONOME,
     [MOVE_ZIPPY_ZAP] = FORBIDDEN_METRONOME,
+	[MOVE_SHADOW_BLAST] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_BLITZ] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_BOLT] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_BREAK] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_CHILL] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_DOWN] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_END] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_FIRE] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_HALF] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_HOLD] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_MIST] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_PANIC] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_RAVE] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_RUSH] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_SHED] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_SKY] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_STORM] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
+	[MOVE_SHADOW_WAVE] = FORBIDDEN_MIMIC | FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT | FORBIDDEN_INSTRUCT,
 };
 
 static const u16 sFinalStrikeOnlyEffects[] =
@@ -11318,6 +11336,51 @@ static void Cmd_various(void)
         }
 	    return;
     }
+    case VARIOUS_TRY_ENTER_REVERSE_MODE:
+	{
+    	VARIOUS_ARGS();
+
+    	if (GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT)
+            gBattlescriptCurrInstr = cmd->nextInstr;
+    	else if (gBattleMons[gBattlerAttacker].isShadow !& battleMons[gBattlerAttacker].isReverse)
+    	{
+    		u16 heartMax = gBattleMons[gBattlerAttacker].heartMax;
+    		u16 heartVal = gBattleMons[gBattlerAttacker].heartValue;
+
+    		u8 aggro = GetShadowAggression(gBattlerAttacker);
+    		u8 heartSection = GetHeartGaugeSection(heartVal, heartMax);
+    		u8 chance = gShadowAggressionTable[aggro][heartSection];
+
+    		u8 roll = Random() % 100;
+
+    		if (roll < chance)
+    		{
+    		    gBattleMons[gBatttlerAttacker].isReverse = TRUE;
+    		    BtlController_EmitShadowAnim(BUFFER_A, SHADOWANIM_ENTERED_REVERSE_MODE);
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ENTERED_REVERSE_MODE;
+    		}
+
+            gBattlescriptCurrInstr = cmd->nextInstr;
+    	}
+    	return;
+	}
+
+    case VARIOUS_REVERSE_MODE_DAMAGE:
+    {
+    	VARIOUS_ARGS();
+
+		u8 rndm = Random() % 3;
+		u16 hpTick = (gBattleMons[gBattlerAttacker].maxHP / 16) - 1;
+
+		if (gBattleMons[gBattlerAttacker].isReverse == TRUE)
+		{
+			gBattleMoveDamage = rndm + hpTick;
+			if (gBattleMoveDamage == 0)
+				gBattleMoveDamage = 1;
+		}
+		BtlController_EmitShadowAnim(BUFFER_A, SHADOWANIM_REVERSE_DAMAGE);
+		gBattlescriptCurrInstr = cmd->nextInstr;
+	}
     } // End of switch (cmd->id)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -12841,8 +12904,8 @@ static void Cmd_weatherdamage(void)
         }
         if (gBattleWeather & B_WEATHER_SHADOW_SKY)
         {
-            if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_SHADOW)
-                && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
+            if (!gBattleMons[gBattlerAttacker].isShadow
+                && !gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER)
                 && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
@@ -12854,6 +12917,7 @@ static void Cmd_weatherdamage(void)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
+
 
 static void Cmd_tryinfatuating(void)
 {
