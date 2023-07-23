@@ -2065,8 +2065,19 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             case F_TRAINER_PARTY_EVERYTHING_CUSTOMIZED:
             {
                 const struct TrainerMonCustomized *partyData = trainer->party.EverythingCustomized;
+                u8 whichShadow = partyData[i].shadowSwap;
                 u32 otIdType = OT_ID_RANDOM_NO_SHINY;
                 u32 fixedOtId = 0;
+                u8 level;
+                if (whichShadow > 0 && !FlagGet(SHADOW_FLAGS_SNAG_BLOCK_1_START + whichShadow))
+                    {
+					    partyData = &sShadowList[whichShadow - i];
+                    }
+                if (&partyData[i].species == NULL)
+                    break;
+
+                level = partyData[i].lvl;
+
                 if (partyData[i].gender == TRAINER_MON_MALE)
                     personalityValue = (personalityValue & 0xFFFFFF00) | GeneratePersonalityForGender(MON_MALE, partyData[i].species);
                 else if (partyData[i].gender == TRAINER_MON_FEMALE)
@@ -2082,7 +2093,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                     otIdType = OT_ID_PRESET;
                     fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
                 }
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
+                CreateMon(&party[i], partyData[i].species, level, 0, TRUE, personalityValue, otIdType, fixedOtId);
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
                 CustomTrainerPartyAssignMoves(&party[i], &partyData[i]);
@@ -2117,15 +2128,25 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 if (partyData[i].isShadow)
                 {
                     bool8 shad = TRUE;
+                    u8 shadowId = partyData[i].shadowId;
                     SetMonData(&party[i], MON_DATA_IS_SHADOW, &shad);
+                    SetMonData(&party[i], MON_DATA_SHADOW_ID, &shadowId);
+                    SetMonData(&party[i], MON_DATA_SHADOW_VAR, &partyData[i].shadowVar);
+                    SetMonData(&party[i], MON_DATA_BOOST_LEVEL, &partyData[i].boostLevel);
                     SetMonData(&party[i], MON_DATA_HEART_VALUE, &partyData[i].heartGauge);
                     SetMonData(&party[i], MON_DATA_HEART_MAX, &partyData[i].heartGauge);
+                    FlagSet(SHADOW_FLAGS_MET_BLOCK_1_START + shadowId);
                 }
                 else if (partyData[i].nickname != NULL)
                 {
                     SetMonData(&party[i], MON_DATA_NICKNAME, partyData[i].nickname);
                 }
-                CalculateMonStats(&party[i]);
+
+
+                if (partyData[i].isShadow)
+                    CalculateShadowBoost(&party[i]);
+                else
+                    CalculateMonStats(&party[i]);
             }
             }
 

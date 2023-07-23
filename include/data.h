@@ -50,7 +50,13 @@ struct TrainerMonCustomized
     u8 nature : 5;
     bool8 gender : 2;
     bool8 isShiny : 1;
+    //Shadow Data
     bool8 isShadow:1;
+    u8 shadowSwap;
+    u8 shadowId;
+    u8 shadowVar;
+    u8 boostLevel;
+    u16 purifyMoves[MAX_MON_MOVES];
     u16 heartGauge;
 };
 
@@ -162,6 +168,7 @@ extern const struct CompressedSpriteSheet gMonFrontPicTable[];
 extern const struct CompressedSpriteSheet gMonFrontPicTableFemale[];
 
 extern const struct Trainer gTrainers[];
+extern const struct TrainerMonCustomized sShadowList[];
 extern const u8 gTrainerClassNames[][13];
 extern const u8 gSpeciesNames[NUM_SPECIES][POKEMON_NAME_LENGTH + 1];
 extern const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1];

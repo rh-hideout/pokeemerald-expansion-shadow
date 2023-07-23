@@ -92,6 +92,9 @@ enum {
     MON_DATA_WORLD_RIBBON,
     MON_DATA_UNUSED_RIBBONS,
     MON_DATA_IS_SHADOW,
+	MON_DATA_SHADOW_ID,
+	MON_DATA_SHADOW_VAR,
+	MON_DATA_BOOST_LEVEL,
     MON_DATA_REVERSE_MODE,
     MON_DATA_HEART_VALUE,
     MON_DATA_HEART_MAX,
@@ -113,7 +116,7 @@ struct PokemonSubstruct0
     /*0x08*/ u8 ppBonuses;
     /*0x09*/ u8 friendship;
     /*0x0A*/ u16 pokeball:5; //31 balls
-             u16 filler:11;
+             u16 shadowId:11;
 }; /* size = 12 */
 
 struct PokemonSubstruct1
@@ -145,7 +148,7 @@ struct PokemonSubstruct3
 
  /* 0x02 */ u16 metLevel:7;
  /* 0x02 */ u16 metGame:4;
- /* 0x03 */ u16 unused1:4;
+ /* 0x03 */ u16 boostLevel:4;
  /* 0x03 */ u16 otGender:1;
 
  /* 0x04 */ u32 hpIV:5;
@@ -210,6 +213,7 @@ union __attribute__((packed, aligned(2))) NicknameShadowdata
     u8 nickname[POKEMON_NAME_LENGTH];
     struct Shadowdata
     {
+    	u8 shadowVar;
         u8 isReverse;
         u16 heartValue;
         u16 heartMax;
@@ -316,9 +320,12 @@ struct BattlePokemon
     /*0x55*/ u32 otId;
     /*0x59*/ u8 metLevel;
     /*0x5A*/ u8 isShadow;
-    /*0x5B*/ u8 isReverse;
-    /*0x5C*/ u16 heartVal;
-    /*0x5E*/ u16 heartMax;
+    /*0x5B*/ u8 shadowId;
+    /*0x5C*/ u8 shadowVar;
+    /*0x5D*/ u8 boostLevel;
+    /*0x5E*/ u8 isReverse;
+    /*0x5F*/ u16 heartVal;
+    /*0x51*/ u16 heartMax;
 };
 
 struct SpeciesInfo /*0x24*/
@@ -494,6 +501,7 @@ u16 GetUnionRoomTrainerPic(void);
 u16 GetUnionRoomTrainerClass(void);
 void CreateEnemyEventMon(void);
 void CalculateMonStats(struct Pokemon *mon);
+void CalculateShadowBoost(struct Pokemon *mon);
 void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest);
 u8 GetLevelFromMonExp(struct Pokemon *mon);
 u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon);
