@@ -574,6 +574,10 @@
 #define B_ANIM_STATUS_NIGHTMARE         8
 #define B_ANIM_STATUS_WRAPPED           9 // does not actually exist
 
+// shadow-related animations
+#define SHADOW_ANIM_ENTERED_REVERSE_MODE   0
+#define SHADOW_ANIM_REVERSE_DAMAGE         1
+
 // Tasks with return values often assign them to gBattleAnimArgs[7].
 #define ARG_RET_ID 7
 

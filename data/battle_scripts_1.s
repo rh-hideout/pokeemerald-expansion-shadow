@@ -8260,6 +8260,11 @@ BattleScript_FrostbiteTurnDmg::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_DoStatusTurnDmg
 
+BattleScript_ReverseModeTurnDmg::
+	printstring STRINGID_REVERSEMODE_DAMAGE
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_DoStatusTurnDmg
+
 BattleScript_MoveUsedIsFrozen::
 	printstring STRINGID_PKMNISFROZEN
 	waitmessage B_WAIT_TIME_LONG
@@ -10624,11 +10629,12 @@ BattleScript_TrainerCallToMon::
 	printstring STRINGID_ATTACKERSSTATROSE
 	waitmessage B_WAIT_TIME_LONG
 	end2
-BattleScript_TrainerCallToMonShadow::
+BattleScript_TrainerCallToMonReverse::
 	printstring STRINGID_TRAINERCALLTOMON
 	waitmessage B_WAIT_TIME_SHORTEST
 	setbyte sHEARTVALUE_STATE, 0
-	modifyheartvalue BS_ATTACKER, -1000
+	modifyheartvalue BS_ATTACKER, -300
+	printstring STRINGID_REVERSEMODE_CALLED
 	end2
 BattleScript_TrainerCallToMonEnd::
 	pause B_WAIT_TIME_SHORTEST

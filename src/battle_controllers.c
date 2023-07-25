@@ -1558,3 +1558,13 @@ void BtlController_EmitHeartValueUpdate(u8 bufferId, u8 partyId, s32 amount)
     sBattleBuffersTransferData[5] = (amount & 0xFF000000) >> 24;
     PrepareBufferDataTransfer(bufferId, sBattleBuffersTransferData, 6);
 }
+
+void BtlController_EmitReverseModeAnim(u8 bufferId, u8 action)
+{
+    sBattleBuffersTransferData[0] = action;
+    sBattleBuffersTransferData[1] = action;
+	sBattleBuffersTransferData[2] = action;
+	sBattleBuffersTransferData[3] = action;
+
+
+}

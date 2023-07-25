@@ -1947,8 +1947,7 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
     [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
 };
 
-
-const s8 gNatureHeartTable[NUM_NATURES][NUM_HEARTGAUGE_METHODS] =
+const s8 gNatureHeartTable[NUM_NATURES][NUM_HEART_REDUCE_METHODS] =
 {                      // Battle   Call    Walk  Daycare  Scent
     [NATURE_HARDY]   = {   +1,      0,      0,     -2,     -1   },
     [NATURE_LONELY]  = {   -3,     +1,      0,     -2,     +3   },
@@ -4810,10 +4809,11 @@ u8 GetShadowAggression(struct BattlePokemon *mon)
 	if (mon->isShadow == TRUE)
 	{
 		shadowVar = mon->shadowVar;
+
 		if (shadowVar > NUM_AGGRO_LEVELS)
-			aggro = SHADOW_AGGRESSION_VERY_HIGH;
+			aggro = SHADOW_AGGRO_VERY_HIGH;
 		else
-			aggro = shadowVar
+			aggro = shadowVar;
 	}
 	return aggro;
 }
@@ -7190,38 +7190,7 @@ u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
     return retVal;
 }
 
-u16 ModifyHeartByNature(u8 nature, u16 heart, u8 methodIndex)
-{
-	u16 retVal;
 
-	switch (gNatureHeartTable[nature][methodIndex - 1])
-	{
-	case 1:
-		retVal = heart * 110;
-		break;
-	case 2:
-		retVal = heart * 120;
-		break;
-	case 3:
-		retVal = heart * 130;
-		break;
-	case -1:
-		retVal = heart * 90;
-		break;
-	case -2:
-		retVal = heart * 80;
-		break;
-	case -3:
-		retVal = heart * 70;
-		break;
-	default:
-		retVal = heart * 100;
-		break;
-	}
-
-	retVal /= 100;
-	return retVal;
-}
 
 #define IS_LEAGUE_BATTLE                                                                \
     ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)                                           \
@@ -8905,11 +8874,13 @@ u8 ShdwCanMonGainEXP(struct Pokemon *mon)
     return TRUE;
 }
 
-void ModifyHeartValue(void)
+void ModifyHeartValue(u16 baseValue, u8 methodIndex)
 {
+	u16 decrease = ModifyHeartByNature(&gBattlemons[gActiveBattler].nature, baseValue, methodIndex)
+
     u16 hVal = gBattleMons[gActiveBattler].heartVal;
     u16 hMax = gBattleMons[gActiveBattler].heartMax;
-    u16 newVal = min(max(hVal - 200, 0), hMax);
+    u16 newVal = min(max(hVal - decrease, 0), hMax);
 
     gActiveBattler = gBattleScripting.battler;
 
@@ -8917,4 +8888,37 @@ void ModifyHeartValue(void)
     {
         gBattleMons[gActiveBattler].heartVal = newVal;
     }    
+}
+
+u16 ModifyHeartByNature(u8 nature, u16 heart, u8 methodIndex)
+{
+	u16 retVal;
+
+	switch (gNatureHeartTable[nature][methodIndex - 1])
+	{
+	case 1:
+		retVal = heart * 110;
+		break;
+	case 2:
+		retVal = heart * 120;
+		break;
+	case 3:
+		retVal = heart * 130;
+		break;
+	case -1:
+		retVal = heart * 90;
+		break;
+	case -2:
+		retVal = heart * 80;
+		break;
+	case -3:
+		retVal = heart * 70;
+		break;
+	default:
+		retVal = heart * 100;
+		break;
+	}
+
+	retVal /= 100;
+	return retVal;
 }

@@ -3939,7 +3939,21 @@ static void TryDoEventsBeforeFirstTurn(void)
         gBattleCommunication[i] = 0;
 
     for (i = 0; i < gBattlersCount; i++)
+    {
         gBattleMons[i].status2 &= ~STATUS2_FLINCHED;
+
+    	u16 decrease = ModifyHeartByNature(&gBattlemons[i].nature, 100, HEART_REDUCE_SENDOUT)
+
+        u16 hVal = gBattleMons[i].heartVal;
+        u16 hMax = gBattleMons[i].heartMax;
+        u16 newVal = min(max(hVal - decrease, 0), hMax);
+
+        if (gBattleMons[i].isShadow)
+        {
+            gBattleMons[i].heartVal = newVal;
+        }
+
+    }
 
     *(&gBattleStruct->turnEffectsTracker) = 0;
     *(&gBattleStruct->turnEffectsBattlerId) = 0;

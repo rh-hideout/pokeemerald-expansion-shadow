@@ -240,6 +240,15 @@ enum {
 	HEART_GAUGE_SECTIONS,
 };
 
+enum {
+	HEART_REDUCE_SENDOUT,
+	HEART_REDUCE_CALL,
+	HEART_REDUCE_WALK,
+	HEART_REDUCE_DAYCARE, //also used for heart chamber
+	HEART_REDUCE_SCENT,
+	NUM_HEART_REDUCE_METHODS,
+};
+
 struct BoxPokemon
 {
     u32 personality;
@@ -627,6 +636,7 @@ void TryToSetBattleFormChangeMoves(struct Pokemon *mon, u16 method);
 u32 GetMonFriendshipScore(struct Pokemon *pokemon);
 void UpdateMonPersonality(struct BoxPokemon *boxMon, u32 personality);
 u8 GetHeartGaugeSection(u16 heartVal, u16 heartMax);
+u8 GetShadowAggression(struct BattlePokemon *mon);
 u8 ShdwCanMonGainEXP(struct Pokemon *mon);
 u8 CheckPartyShadow(struct Pokemon *party, u8 selection);
 

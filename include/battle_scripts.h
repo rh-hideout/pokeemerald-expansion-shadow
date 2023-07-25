@@ -112,6 +112,7 @@ extern const u8 BattleScript_MonWokeUpInUproar[];
 extern const u8 BattleScript_PoisonTurnDmg[];
 extern const u8 BattleScript_BurnTurnDmg[];
 extern const u8 BattleScript_FrostbiteTurnDmg[];
+extern const u8 BattleScript_ReverseModeTurnDmg[];
 extern const u8 BattleScript_MoveUsedIsFrozen[];
 extern const u8 BattleScript_MoveUsedUnfroze[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];
@@ -473,7 +474,7 @@ extern const u8 BattleScript_BerserkGeneRet[];
 extern const u8 BattleScript_TargetFormChangeWithStringNoPopup[];
 extern const u8 BattleScript_DefDown[];
 extern const u8 BattleScript_TrainerCallToMon[];
-extern const u8 BattleScript_TrainerCallToMonShadow[];
+extern const u8 BattleScript_TrainerCallToMonReverse[];
 extern const u8 BattleScript_ShadowSkyContinues[];
 extern const u8 BattleScript_ShadowSkyEnd[];
 

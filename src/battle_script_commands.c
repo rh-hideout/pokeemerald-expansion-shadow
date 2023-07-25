@@ -6140,6 +6140,29 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         }
+        case MOVEEND_ENTER_REVERSE_MODE:
+        {
+        	if (gBattleMoves[gCurrentMove].type != TYPE_SHADOW && gBattleMons[gBattlerAttacker].isReverse == FALSE && GetBattlerSide(gBattlerAttacker) != B_SIDE_OPPONENT)
+        	{
+        		u16 heartMax = gBattleMons[gBattlerAttacker].heartMax;
+        		u16 heartVal = gBattleMons[gBattlerAttacker].heartVal;
+
+        		u8 aggro = GetShadowAggression(&gBattleMons[gBattlerAttacker]);
+        		u8 heartSection = GetHeartGaugeSection(heartVal, heartMax);
+        		u8 chance = gShadowAggressionTable[aggro][heartSection];
+
+        		u8 roll = Random() % 100;
+
+        		if (roll < chance)
+        		{
+        		    gBattleMons[gBattlerAttacker].isReverse = TRUE;
+        		    BtlController_EmitReverseModeAnim(BUFFER_A, SHADOW_ANIM_ENTERED_REVERSE_MODE);
+        		}
+
+        	}
+            gBattlescripting.moveendState++;
+            break;
+        }
         case MOVEEND_EJECT_BUTTON:
             if (gBattleMoves[gCurrentMove].effect != EFFECT_HIT_SWITCH_TARGET
               && IsBattlerAlive(gBattlerAttacker)
@@ -7122,6 +7145,7 @@ static void Cmd_switchineffects(void)
     gSpecialStatuses[gActiveBattler].faintedHasReplacement = FALSE;
 
     if (!BattlerHasAi(gActiveBattler))
+    	ModifyHeartValue(100, HEART_REDUCE_SENDOUT);
         gBattleStruct->appearedInBattle |= gBitTable[gBattlerPartyIndexes[gActiveBattler]];
 
     // Neutralizing Gas announces itself before hazards
@@ -11268,9 +11292,9 @@ static void Cmd_various(void)
         }
         break;
     }
-    case VARIOUS_MODIFY_HEART_VALUE:
+    case VARIOUS_MODIFY_HEART_VALUE_SENDOUT:
     {
-        VARIOUS_ARGS(s32 amount);
+        VARIOUS_ARGS(u16 baseamount);
         switch (gBattleScripting.heartValueState)
         {
             case 0:
@@ -11294,7 +11318,66 @@ static void Cmd_various(void)
                     gActiveBattler = 0;
                 }
 
-                gBattleMons[gActiveBattler].heartVal += cmd->amount;
+                u8 nature = gBattleMons[gActiveBattler].nature;
+                u16 amount = ModifyHeartByNature(nature, baseamount, HEART_REDUCE_SENDOUT)
+
+                gBattleMons[gActiveBattler].heartVal -= cmd->amount;
+                BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], cmd->amount);
+                MarkBattlerForControllerExec(gActiveBattler);
+
+                gBattleScripting.heartValueState++;
+                break;
+                }
+            }
+            case 1:
+            {
+                if (!gBattleControllerExecFlags)
+                {
+                    PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gActiveBattler, gBattlerPartyIndexes[gActiveBattler]);
+                    BtlController_EmitPrintString(BUFFER_A, STRINGID_PKMNHEARTGAUGEUPDATE);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    gBattleScripting.heartValueState++;
+                }
+                break;
+            }
+            case 2:
+            {
+                gBattlescriptCurrInstr = cmd->nextInstr;
+            }
+        }
+        return;
+    }
+    case VARIOUS_MODIFY_HEART_VALUE_CALL:
+    {
+        VARIOUS_ARGS(u16 baseamount);
+        switch (gBattleScripting.heartValueState)
+        {
+            case 0:
+            {
+                if (!gBattleControllerExecFlags)
+                {
+                    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+                    {
+                        if (gBattlerPartyIndexes[2] == gActiveBattler && !(gAbsentBattlerFlags & gBitTable[2]))
+                            gActiveBattler = 2;
+                        else
+                        {
+                            if (!(gAbsentBattlerFlags & gBitTable[0]))
+                                gActiveBattler = 0;
+                            else
+                                gActiveBattler = 2;
+                        }
+                    }
+                else
+                {
+                    gActiveBattler = 0;
+                }
+
+                u8 nature = gBattleMons[gActiveBattler].nature;
+                u16 amount = ModifyHeartByNature(nature, baseamount, HEART_REDUCE_CALL)
+
+                gBattleMons[gActiveBattler].isReverse = FALSE;
+                gBattleMons[gActiveBattler].heartVal -= cmd->amount;
                 BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], cmd->amount);
                 MarkBattlerForControllerExec(gActiveBattler);
 
@@ -11336,51 +11419,6 @@ static void Cmd_various(void)
         }
 	    return;
     }
-    case VARIOUS_TRY_ENTER_REVERSE_MODE:
-	{
-    	VARIOUS_ARGS();
-
-    	if (GetBattlerSide(gBattlerAttacker) == B_SIDE_OPPONENT)
-            gBattlescriptCurrInstr = cmd->nextInstr;
-    	else if (gBattleMons[gBattlerAttacker].isShadow !& battleMons[gBattlerAttacker].isReverse)
-    	{
-    		u16 heartMax = gBattleMons[gBattlerAttacker].heartMax;
-    		u16 heartVal = gBattleMons[gBattlerAttacker].heartValue;
-
-    		u8 aggro = GetShadowAggression(gBattlerAttacker);
-    		u8 heartSection = GetHeartGaugeSection(heartVal, heartMax);
-    		u8 chance = gShadowAggressionTable[aggro][heartSection];
-
-    		u8 roll = Random() % 100;
-
-    		if (roll < chance)
-    		{
-    		    gBattleMons[gBatttlerAttacker].isReverse = TRUE;
-    		    BtlController_EmitShadowAnim(BUFFER_A, SHADOWANIM_ENTERED_REVERSE_MODE);
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ENTERED_REVERSE_MODE;
-    		}
-
-            gBattlescriptCurrInstr = cmd->nextInstr;
-    	}
-    	return;
-	}
-
-    case VARIOUS_REVERSE_MODE_DAMAGE:
-    {
-    	VARIOUS_ARGS();
-
-		u8 rndm = Random() % 3;
-		u16 hpTick = (gBattleMons[gBattlerAttacker].maxHP / 16) - 1;
-
-		if (gBattleMons[gBattlerAttacker].isReverse == TRUE)
-		{
-			gBattleMoveDamage = rndm + hpTick;
-			if (gBattleMoveDamage == 0)
-				gBattleMoveDamage = 1;
-		}
-		BtlController_EmitShadowAnim(BUFFER_A, SHADOWANIM_REVERSE_DAMAGE);
-		gBattlescriptCurrInstr = cmd->nextInstr;
-	}
     } // End of switch (cmd->id)
 
     gBattlescriptCurrInstr = cmd->nextInstr;
