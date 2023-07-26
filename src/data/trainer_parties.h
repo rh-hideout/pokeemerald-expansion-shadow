@@ -100,29 +100,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Gabrielle1[] = {
     }
 };
 
-static const struct TrainerMonCustomized sParty_GruntPetalburgWoods[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntPetalburgWoods[] = {
     {
     .iv = 0,
     .lvl = 9,
     .species = SPECIES_POOCHYENA,
-    .shadowSwap = SHADOW_LIST_EEVEE,
-    },
-    {
-    .shadowSwap = SHADOW_LIST_VAPOREON,
-    },
-    {
-    .shadowSwap = SHADOW_LIST_JOLTEON,
-    },
-    {
-    .shadowSwap = SHADOW_LIST_FLAREON,
-    },
-    {
-    .shadowSwap = SHADOW_LIST_LEAFEON,
-    },
-    {
-    .shadowSwap = SHADOW_LIST_GLACEON,
-    },
-
+    }
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_Marcel[] = {
@@ -4228,20 +4211,63 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Calvin1[] = {
     }
 };
 
-static const struct TrainerMonCustomized sParty_ShadowTest[] = {
+static const struct TrainerMonCustomized sParty_ShadowTest1[] = {
     {
     .iv = 0,
-    .lvl = 2,
-    .species = SPECIES_LOTAD,
+    .lvl = 20,
+    .species = SPECIES_LOMBRE,
     .isShadow = 1,
     .heartGauge = 3000,
+	.shadowSwap = SHADOW_LIST_EEVEE,
     },
     {
     .iv = 0,
-    .lvl = 2,
-    .species = SPECIES_LOTAD,
+    .lvl = 20,
+    .species = SPECIES_LOMBRE,
     .isShadow = 0,
-    .heartGauge = 0,
+	.shadowSwap = SHADOW_LIST_GLACEON,
+    },
+    {
+    .iv = 0,
+    .lvl = 20,
+    .species = SPECIES_LOMBRE,
+    .isShadow = 1,
+    .heartGauge = 3000,
+	.shadowSwap = SHADOW_LIST_JOLTEON,
+    },
+    {
+    .iv = 0,
+    .lvl = 20,
+    .species = SPECIES_LOMBRE,
+    .isShadow = 0,
+	.shadowSwap = SHADOW_LIST_VAPOREON,
+    },
+    {
+	.shadowSwap = SHADOW_LIST_FLAREON,
+    },
+    {
+	.shadowSwap = SHADOW_LIST_LEAFEON,
+    }
+};
+
+static const struct TrainerMonCustomized sParty_ShadowTest2[] = {
+
+    {
+    .shadowSwap = SHADOW_LIST_EEVEE,
+	},
+    {
+    .shadowSwap = SHADOW_LIST_GLACEON,
+    },
+    {
+    .shadowSwap = SHADOW_LIST_LEAFEON,
+    },
+    {
+    .iv = 0,
+    .lvl = 100,
+    .species = SPECIES_MAGIKARP,
+    .isShadow = 0,
+	.moves = {MOVE_SPLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+	.shadowSwap = SHADOW_LIST_LUGIA,
     }
 };
 
@@ -8181,7 +8207,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Crissy[] = {
     }
 };
 
-static const struct TrainerMonCustomized sParty_Rick[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Rick[] = {
     {
     .iv = 0,
     .lvl = 4,
@@ -8194,7 +8220,7 @@ static const struct TrainerMonCustomized sParty_Rick[] = {
     }
 };
 
-static const struct TrainerMonCustomized sParty_Lyle[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Lyle[] = {
     {
     .iv = 0,
     .lvl = 3,
@@ -8204,13 +8230,11 @@ static const struct TrainerMonCustomized sParty_Lyle[] = {
     .iv = 0,
     .lvl = 3,
     .species = SPECIES_WURMPLE,
-    .shadowSwap = SHADOW_LIST_LEAFEON,
     },
     {
     .iv = 0,
     .lvl = 3,
     .species = SPECIES_WURMPLE,
-    .shadowSwap = SHADOW_LIST_LUGIA,
     },
     {
     .iv = 0,
@@ -8219,7 +8243,7 @@ static const struct TrainerMonCustomized sParty_Lyle[] = {
     }
 };
 
-static const struct TrainerMonCustomized sParty_Jose[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Jose[] = {
     {
     .iv = 50,
     .lvl = 8,
@@ -8266,7 +8290,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Kent[] = {
     }
 };
 
-static const struct TrainerMonCustomized sParty_James1[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_James1[] = {
     {
     .iv = 0,
     .lvl = 6,
@@ -12471,166 +12495,158 @@ static const struct TrainerMonNoItemDefaultMoves sParty_MayLinkPlaceholder[] = {
     }
 };
 
-
-
-
-
-
-
-
-
 const struct TrainerMonCustomized sShadowList[] = {
 
     [SHADOW_LIST_NONE] =
     {
-    .shadowId = SHADOW_LIST_NONE, //0
-    .isShadow = FALSE,
-    .boostLevel = 0,
-    .shadowVar = 0,
-    .heartGauge = 2000,
-    .moves = {MOVE_SHADOW_RUSH, MOVE_NONE, MOVE_NONE, MOVE_NONE},
-    .purifyMoves = {MOVE_POUND, MOVE_NONE, MOVE_NONE, MOVE_NONE},
-    .species = SPECIES_NONE,
-    .heldItem = ITEM_NONE,
-    .ability = ABILITY_NONE,
-    .lvl = 1,
-    .iv = 0,
-    .nature = 0,
-    .gender = MON_GENDERLESS,
-    .isShiny = FALSE,
+        .shadowId = SHADOW_LIST_NONE, //0
+        .isShadow = FALSE,
+        .boostLevel = 0,
+        .shadowVar = 0,
+        .heartGauge = 2000,
+        .moves = {MOVE_SHADOW_RUSH, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+        .purifyMoves = {MOVE_POUND, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+        .species = SPECIES_NONE,
+        .heldItem = ITEM_NONE,
+        .ability = ABILITY_NONE,
+        .lvl = 1,
+        .iv = 0,
+        .nature = 0,
+        .gender = MON_GENDERLESS,
+        .isShiny = FALSE,
     },
 
     [SHADOW_LIST_EEVEE] =
     {
-    .shadowId = SHADOW_LIST_EEVEE,
-    .isShadow = TRUE,
-    .boostLevel = 1,
-    .shadowVar = 1,
-    .heartGauge = 4000,
-    .moves = {MOVE_SHADOW_WAVE, MOVE_NONE, MOVE_NONE, MOVE_NONE},
-    .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_CALM_MIND, MOVE_STORED_POWER},
-    .species = SPECIES_EEVEE,
-    .heldItem = ITEM_NONE,
-    .ability = ABILITY_NONE,
-    .lvl = 15,
-    .iv = 0,
-    .nature = 0,
-    .gender = MON_MALE,
-    .isShiny = FALSE,
+        .shadowId = SHADOW_LIST_EEVEE,
+        .isShadow = TRUE,
+        .boostLevel = 1,
+        .shadowVar = 1,
+        .heartGauge = 4000,
+        .moves = {MOVE_SHADOW_WAVE, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+        .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_CALM_MIND, MOVE_STORED_POWER},
+        .species = SPECIES_EEVEE,
+        .heldItem = ITEM_NONE,
+        .ability = ABILITY_NONE,
+        .lvl = 15,
+        .iv = 0,
+        .nature = 0,
+        .gender = MON_MALE,
+        .isShiny = FALSE,
     },
 
     [SHADOW_LIST_VAPOREON] =
     {
-    .shadowId = SHADOW_LIST_VAPOREON,
-    .isShadow = TRUE,
-    .boostLevel = 2,
-    .shadowVar = 1,
-    .heartGauge = 6000,
-    .moves = {MOVE_SHADOW_SKY, MOVE_SHADOW_STORM, MOVE_SHADOW_MIST, MOVE_SHADOW_DOWN},
-    .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_CALM_MIND, MOVE_STORED_POWER},
-    .species = SPECIES_VAPOREON,
-    .heldItem = ITEM_NONE,
-    .ability = ABILITY_NONE,
-    .lvl = 20,
-    .iv = 0,
-    .nature = 0,
-    .gender = MON_MALE,
-    .isShiny = TRUE,
+        .shadowId = SHADOW_LIST_VAPOREON,
+        .isShadow = TRUE,
+        .boostLevel = 2,
+        .shadowVar = 1,
+        .heartGauge = 6000,
+        .moves = {MOVE_SHADOW_SKY, MOVE_SHADOW_STORM, MOVE_SHADOW_MIST, MOVE_SHADOW_DOWN},
+        .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_CALM_MIND, MOVE_STORED_POWER},
+        .species = SPECIES_VAPOREON,
+        .heldItem = ITEM_NONE,
+        .ability = ABILITY_NONE,
+        .lvl = 20,
+        .iv = 0,
+        .nature = 0,
+        .gender = MON_MALE,
+        .isShiny = TRUE,
     },
 
     [SHADOW_LIST_JOLTEON] =
     {
-    .shadowId = SHADOW_LIST_JOLTEON,
-    .isShadow = TRUE,
-    .boostLevel = 2,
-    .shadowVar = 2,
-    .heartGauge = 6000,
-    .moves = {MOVE_SHADOW_BOLT, MOVE_SHADOW_RAVE, MOVE_SHADOW_PANIC, MOVE_SHADOW_RUSH},
-    .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_CALM_MIND, MOVE_STORED_POWER},
-    .species = SPECIES_JOLTEON,
-    .heldItem = ITEM_NONE,
-    .ability = ABILITY_NONE,
-    .lvl = 20,
-    .iv = 0,
-    .nature = 0,
-    .gender = MON_MALE,
-    .isShiny = FALSE,
+        .shadowId = SHADOW_LIST_JOLTEON,
+        .isShadow = TRUE,
+        .boostLevel = 2,
+        .shadowVar = 2,
+        .heartGauge = 6000,
+        .moves = {MOVE_SHADOW_BOLT, MOVE_SHADOW_RAVE, MOVE_SHADOW_PANIC, MOVE_SHADOW_RUSH},
+        .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_CALM_MIND, MOVE_STORED_POWER},
+        .species = SPECIES_JOLTEON,
+        .heldItem = ITEM_NONE,
+        .ability = ABILITY_NONE,
+        .lvl = 20,
+        .iv = 0,
+        .nature = 0,
+        .gender = MON_MALE,
+        .isShiny = FALSE,
     },
 
     [SHADOW_LIST_FLAREON] =
     {
-    .shadowId = SHADOW_LIST_FLAREON,
-    .isShadow = TRUE,
-    .boostLevel = 2,
-    .shadowVar = 3,
-    .heartGauge = 6000,
-    .moves = {MOVE_SHADOW_FIRE, MOVE_SHADOW_HALF, MOVE_SHADOW_BLITZ, MOVE_SHADOW_END},
-    .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_BULK_UP, MOVE_POWER_TRIP},
-    .species = SPECIES_FLAREON,
-    .heldItem = ITEM_NONE,
-    .ability = ABILITY_NONE,
-    .lvl = 20,
-    .iv = 0,
-    .nature = 0,
-    .gender = MON_MALE,
-    .isShiny = TRUE,
+        .shadowId = SHADOW_LIST_FLAREON,
+        .isShadow = TRUE,
+        .boostLevel = 2,
+        .shadowVar = 3,
+        .heartGauge = 6000,
+        .moves = {MOVE_SHADOW_FIRE, MOVE_SHADOW_HALF, MOVE_SHADOW_BLITZ, MOVE_SHADOW_END},
+        .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_BULK_UP, MOVE_POWER_TRIP},
+        .species = SPECIES_FLAREON,
+        .heldItem = ITEM_NONE,
+        .ability = ABILITY_NONE,
+        .lvl = 20,
+        .iv = 0,
+        .nature = 0,
+        .gender = MON_MALE,
+        .isShiny = TRUE,
     },
 
     [SHADOW_LIST_LEAFEON] =
     {
-    .shadowId = SHADOW_LIST_LEAFEON,
-    .isShadow = TRUE,
-    .boostLevel = 2,
-    .shadowVar = 4,
-    .heartGauge = 6000,
-    .moves = {MOVE_SHADOW_BLAST, MOVE_SHADOW_HOLD, MOVE_NONE, MOVE_NONE},
-    .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_BULK_UP, MOVE_POWER_TRIP},
-    .species = SPECIES_LEAFEON,
-    .heldItem = ITEM_NONE,
-    .ability = ABILITY_NONE,
-    .lvl = 20,
-    .iv = 0,
-    .nature = 0,
-    .gender = MON_MALE,
-    .isShiny = FALSE,
+        .shadowId = SHADOW_LIST_LEAFEON,
+        .isShadow = TRUE,
+        .boostLevel = 2,
+        .shadowVar = 4,
+        .heartGauge = 6000,
+        .moves = {MOVE_SHADOW_BLAST, MOVE_SHADOW_HOLD, MOVE_NONE, MOVE_NONE},
+        .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_BULK_UP, MOVE_POWER_TRIP},
+        .species = SPECIES_LEAFEON,
+        .heldItem = ITEM_NONE,
+        .ability = ABILITY_NONE,
+        .lvl = 20,
+        .iv = 0,
+        .nature = 0,
+        .gender = MON_MALE,
+        .isShiny = FALSE,
     },
 
     [SHADOW_LIST_GLACEON] =
     {
-    .shadowId = SHADOW_LIST_GLACEON,
-    .isShadow = TRUE,
-    .boostLevel = 2,
-    .shadowVar = 5,
-    .heartGauge = 6000,
-    .moves = {MOVE_SHADOW_CHILL, MOVE_SHADOW_BREAK, MOVE_SHADOW_SHED, MOVE_NONE},
-    .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_CALM_MIND, MOVE_STORED_POWER},
-    .species = SPECIES_GLACEON,
-    .heldItem = ITEM_NONE,
-    .ability = ABILITY_NONE,
-    .lvl = 20,
-    .iv = 0,
-    .nature = 0,
-    .gender = MON_MALE,
-    .isShiny = TRUE,
+        .shadowId = SHADOW_LIST_GLACEON,
+        .isShadow = TRUE,
+        .boostLevel = 2,
+        .shadowVar = 5,
+        .heartGauge = 6000,
+        .moves = {MOVE_SHADOW_CHILL, MOVE_SHADOW_BREAK, MOVE_SHADOW_SHED, MOVE_NONE},
+        .purifyMoves = {MOVE_LAST_RESORT, MOVE_REVELATION_DANCE, MOVE_CALM_MIND, MOVE_STORED_POWER},
+        .species = SPECIES_GLACEON,
+        .heldItem = ITEM_NONE,
+        .ability = ABILITY_NONE,
+        .lvl = 20,
+        .iv = 0,
+        .nature = 0,
+        .gender = MON_MALE,
+        .isShiny = TRUE,
     },
 
     [SHADOW_LIST_LUGIA] =
     {
-    .shadowId = SHADOW_LIST_LUGIA,
-    .isShadow = TRUE,
-    .boostLevel = 3,
-    .shadowVar = 6,
-    .heartGauge = 12000,
-    .moves = {MOVE_SHADOW_BLAST, MOVE_SHADOW_DOWN, MOVE_SHADOW_SHED, MOVE_SHADOW_STORM},
-    .purifyMoves = {MOVE_PSYCHO_BOOST, MOVE_FEATHER_DANCE, MOVE_EARTHQUAKE, MOVE_HYDRO_PUMP},
-    .species = SPECIES_LUGIA,
-    .heldItem = ITEM_NONE,
-    .ability = ABILITY_NONE,
-    .lvl = 50,
-    .iv = 0,
-    .nature = NATURE_BOLD,
-    .gender = MON_GENDERLESS,
-    .isShiny = FALSE,
+        .shadowId = SHADOW_LIST_LUGIA,
+        .isShadow = TRUE,
+        .boostLevel = 3,
+        .shadowVar = 6,
+        .heartGauge = 12000,
+        .moves = {MOVE_SHADOW_BLAST, MOVE_SHADOW_DOWN, MOVE_SHADOW_SHED, MOVE_SHADOW_STORM},
+        .purifyMoves = {MOVE_PSYCHO_BOOST, MOVE_FEATHER_DANCE, MOVE_EARTHQUAKE, MOVE_HYDRO_PUMP},
+        .species = SPECIES_LUGIA,
+        .heldItem = ITEM_NONE,
+        .ability = ABILITY_NONE,
+        .lvl = 50,
+        .iv = 0,
+        .nature = NATURE_BOLD,
+        .gender = MON_GENDERLESS,
+        .isShiny = FALSE,
     },
 
 };

@@ -5234,7 +5234,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = substruct3->isShadow;
         break;
     case MON_DATA_SHADOW_ID:
-        retVal = substruct0->shadowId;
+        retVal = boxMon->nickData.shadowData.shadowId;
         break;
     case MON_DATA_SHADOW_VAR:
         if (substruct3->isShadow)
@@ -5242,7 +5242,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_BOOST_LEVEL:
         if (substruct3->isShadow)
-            retVal = substruct3->boostLevel;
+            retVal = boxMon->nickData.shadowData.boostLevel;
         break;
     case MON_DATA_REVERSE_MODE:
         if (substruct3->isShadow)
@@ -5573,13 +5573,13 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         SET8(substruct3->isShadow);
         break;
     case MON_DATA_SHADOW_ID:
-        SET8(substruct0->shadowId);
+        SET8(boxMon->nickData.shadowData.shadowId);
         break;
     case MON_DATA_SHADOW_VAR:
         SET8(boxMon->nickData.shadowData.shadowVar);
         break;
     case MON_DATA_BOOST_LEVEL:
-        SET8(substruct3->boostLevel);
+        SET8(boxMon->nickData.shadowData.boostLevel);
         break;
     case MON_DATA_REVERSE_MODE:
         SET8(boxMon->nickData.shadowData.isReverse);

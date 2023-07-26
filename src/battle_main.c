@@ -2071,7 +2071,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 u8 level;
                 if (whichShadow > 0 && !FlagGet(SHADOW_FLAGS_SNAG_BLOCK_1_START + whichShadow))
                     {
-					    partyData = &sShadowList[whichShadow - i];
+                        partyData = &sShadowList[whichShadow - i];
                     }
                 if (&partyData[i].species == NULL)
                     break;
@@ -2144,7 +2144,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
 
 
                 if (partyData[i].isShadow)
-                    CalculateShadowBoost(&party[i]);
+                    CalculateMonStats(&party[i]);
                 else
                     CalculateMonStats(&party[i]);
             }

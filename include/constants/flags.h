@@ -651,94 +651,91 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
-// Shadow ID Met Flags Block 1 (80 mons) -- use other unused flag space for additional blocks
+// Shadow ID Met Flags Block 1 -- can be moved to any other area, just placing them here by default. Make sure the "START" define is one less than the actual first flag.
 
-#define SHADOW_FLAGS_MET_BLOCK_1_START                                  (FLAG_MET_SHADOW_1 - 1) // 0x263
-#define SHADOW_FLAGS_MET_BLOCK_1_END									(FLAG_MET_SHADOW_80) // 0x4E2
+#define SHADOW_FLAGS_MET_BLOCK_1_START    0x263
+#define SHADOW_FLAGS_MET_BLOCK_1_END      0x2B3
 
-#define FLAG_MET_SHADOW_1  0x264 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_2  0x265 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_3  0x266 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_4  0x267 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_5  0x268 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_6  0x269 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_7  0x26A // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_8  0x26B // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_9  0x26C // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_10 0x26D // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_11 0x26E // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_12 0x26F // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_13 0x270 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_14 0x271 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_15 0x272 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_16 0x273 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_17 0x274 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_18 0x275 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_19 0x276 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_20 0x277 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_21 0x278 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_22 0x279 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_23 0x27A // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_24 0x27B // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_25 0x27C // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_26 0x27D // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_27 0x27E // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_28 0x27F // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_29 0x280 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_30 0x281 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_31 0x282 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_32 0x283 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_33 0x284 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_34 0x285 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_35 0x286 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_36 0x287 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_37 0x288 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_38 0x289 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_39 0x28A // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_40 0x28B // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_41 0x28C // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_42 0x28D // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_43 0x28E // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_44 0x28F // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_45 0x290 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_46 0x291 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_47 0x292 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_48 0x293 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_49 0x294 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_50 0x295 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_51 0x296 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_52 0x297 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_53 0x298 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_54 0x299 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_55 0x29A // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_56 0x29B // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_57 0x29C // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_58 0x29D // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_59 0x29E // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_60 0x29F // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_61 0x2A0 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_62 0x2A1 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_63 0x2A2 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_64 0x2A3 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_65 0x2A4 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_66 0x2A5 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_67 0x2A6 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_68 0x2A7 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_69 0x2A8 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_70 0x2A9 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_71 0x2AA // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_72 0x2AB // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_73 0x2AC // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_74 0x2AD // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_75 0x2AE // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_76 0x2AF // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_77 0x2B0 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_78 0x2B1 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_79 0x2B2 // Unused Flag in vanilla
-#define FLAG_MET_SHADOW_80 0x2B3 // Unused Flag in vanilla
-
-
-
+#define FLAG_UNUSED_0x264  0x264 // Unused Flag
+#define FLAG_UNUSED_0x265  0x265 // Unused Flag
+#define FLAG_UNUSED_0x266  0x266 // Unused Flag
+#define FLAG_UNUSED_0x267  0x267 // Unused Flag
+#define FLAG_UNUSED_0x268  0x268 // Unused Flag
+#define FLAG_UNUSED_0x269  0x269 // Unused Flag
+#define FLAG_UNUSED_0x26A  0x26A // Unused Flag
+#define FLAG_UNUSED_0x26B  0x26B // Unused Flag
+#define FLAG_UNUSED_0x26C  0x26C // Unused Flag
+#define FLAG_UNUSED_0x26D  0x26D // Unused Flag
+#define FLAG_UNUSED_0x26E  0x26E // Unused Flag
+#define FLAG_UNUSED_0x26F  0x26F // Unused Flag
+#define FLAG_UNUSED_0x270  0x270 // Unused Flag
+#define FLAG_UNUSED_0x271  0x271 // Unused Flag
+#define FLAG_UNUSED_0x272  0x272 // Unused Flag
+#define FLAG_UNUSED_0x273  0x273 // Unused Flag
+#define FLAG_UNUSED_0x274  0x274 // Unused Flag
+#define FLAG_UNUSED_0x275  0x275 // Unused Flag
+#define FLAG_UNUSED_0x276  0x276 // Unused Flag
+#define FLAG_UNUSED_0x277  0x277 // Unused Flag
+#define FLAG_UNUSED_0x278  0x278 // Unused Flag
+#define FLAG_UNUSED_0x279  0x279 // Unused Flag
+#define FLAG_UNUSED_0x27A  0x27A // Unused Flag
+#define FLAG_UNUSED_0x27B  0x27B // Unused Flag
+#define FLAG_UNUSED_0x27C  0x27C // Unused Flag
+#define FLAG_UNUSED_0x27D  0x27D // Unused Flag
+#define FLAG_UNUSED_0x27E  0x27E // Unused Flag
+#define FLAG_UNUSED_0x27F  0x27F // Unused Flag
+#define FLAG_UNUSED_0x280  0x280 // Unused Flag
+#define FLAG_UNUSED_0x281  0x281 // Unused Flag
+#define FLAG_UNUSED_0x282  0x282 // Unused Flag
+#define FLAG_UNUSED_0x283  0x283 // Unused Flag
+#define FLAG_UNUSED_0x284  0x284 // Unused Flag
+#define FLAG_UNUSED_0x285  0x285 // Unused Flag
+#define FLAG_UNUSED_0x286  0x286 // Unused Flag
+#define FLAG_UNUSED_0x287  0x287 // Unused Flag
+#define FLAG_UNUSED_0x288  0x288 // Unused Flag
+#define FLAG_UNUSED_0x289  0x289 // Unused Flag
+#define FLAG_UNUSED_0x28A  0x28A // Unused Flag
+#define FLAG_UNUSED_0x28B  0x28B // Unused Flag
+#define FLAG_UNUSED_0x28C  0x28C // Unused Flag
+#define FLAG_UNUSED_0x28D  0x28D // Unused Flag
+#define FLAG_UNUSED_0x28E  0x28E // Unused Flag
+#define FLAG_UNUSED_0x28F  0x28F // Unused Flag
+#define FLAG_UNUSED_0x290  0x290 // Unused Flag
+#define FLAG_UNUSED_0x291  0x291 // Unused Flag
+#define FLAG_UNUSED_0x292  0x292 // Unused Flag
+#define FLAG_UNUSED_0x293  0x293 // Unused Flag
+#define FLAG_UNUSED_0x294  0x294 // Unused Flag
+#define FLAG_UNUSED_0x295  0x295 // Unused Flag
+#define FLAG_UNUSED_0x296  0x296 // Unused Flag
+#define FLAG_UNUSED_0x297  0x297 // Unused Flag
+#define FLAG_UNUSED_0x298  0x298 // Unused Flag
+#define FLAG_UNUSED_0x299  0x299 // Unused Flag
+#define FLAG_UNUSED_0x29A  0x29A // Unused Flag
+#define FLAG_UNUSED_0x29B  0x29B // Unused Flag
+#define FLAG_UNUSED_0x29C  0x29C // Unused Flag
+#define FLAG_UNUSED_0x29D  0x29D // Unused Flag
+#define FLAG_UNUSED_0x29E  0x29E // Unused Flag
+#define FLAG_UNUSED_0x29F  0x29F // Unused Flag
+#define FLAG_UNUSED_0x2A0  0x2A0 // Unused Flag
+#define FLAG_UNUSED_0x2A1  0x2A1 // Unused Flag
+#define FLAG_UNUSED_0x2A2  0x2A2 // Unused Flag
+#define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag
+#define FLAG_UNUSED_0x2A4  0x2A4 // Unused Flag
+#define FLAG_UNUSED_0x2A5  0x2A5 // Unused Flag
+#define FLAG_UNUSED_0x2A6  0x2A6 // Unused Flag
+#define FLAG_UNUSED_0x2A7  0x2A7 // Unused Flag
+#define FLAG_UNUSED_0x2A8  0x2A8 // Unused Flag
+#define FLAG_UNUSED_0x2A9  0x2A9 // Unused Flag
+#define FLAG_UNUSED_0x2AA  0x2AA // Unused Flag
+#define FLAG_UNUSED_0x2AB  0x2AB // Unused Flag
+#define FLAG_UNUSED_0x2AC  0x2AC // Unused Flag
+#define FLAG_UNUSED_0x2AD  0x2AD // Unused Flag
+#define FLAG_UNUSED_0x2AE  0x2AE // Unused Flag
+#define FLAG_UNUSED_0x2AF  0x2AF // Unused Flag
+#define FLAG_UNUSED_0x2B0  0x2B0 // Unused Flag
+#define FLAG_UNUSED_0x2B1  0x2B1 // Unused Flag
+#define FLAG_UNUSED_0x2B2  0x2B2 // Unused Flag
+#define FLAG_UNUSED_0x2B3  0x2B3 // Unused Flag
 #define FLAG_UNUSED_0x2B4  0x2B4 // Unused Flag
 #define FLAG_UNUSED_0x2B5  0x2B5 // Unused Flag
 #define FLAG_UNUSED_0x2B6  0x2B6 // Unused Flag
@@ -1225,93 +1222,91 @@
 #define FLAG_ITEM_SAFARI_ZONE_NORTH_EAST_NUGGET                     0x491
 #define FLAG_ITEM_SAFARI_ZONE_SOUTH_EAST_BIG_PEARL                  0x492
 
-// Shadow ID Snag Flags Block 1 (80 mons) -- use other unused flag space for additional blocks
+// Shadow ID Snag Flags Block 1 -- can be moved to any other area, just placing them here by default. Make sure the "START" define is one less than the actual first flag.
 
-#define SHADOW_FLAGS_SNAG_BLOCK_1_START                                  (FLAG_SNAG_SHADOW_1 - 1) // 0x492
-#define SHADOW_FLAGS_SNAG_BLOCK_1_END									(FLAG_SNAG_SHADOW_80) // 0x4E2
+#define SHADOW_FLAGS_SNAG_BLOCK_1_START     0x492
+#define SHADOW_FLAGS_SNAG_BLOCK_1_END       0x4E2
 
-#define FLAG_SNAG_SHADOW_1                                           0x493 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_2                                           0x494 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_3                                           0x495 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_4                                           0x496 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_5                                           0x497 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_6                                           0x498 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_7                                           0x499 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_8                                           0x49A // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_9                                           0x49B // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_10                                          0x49C // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_11                                          0x49D // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_12                                          0x49E // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_13                                          0x49F // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_14                                          0x4A0 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_15                                          0x4A1 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_16                                          0x4A2 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_17                                          0x4A3 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_18                                          0x4A4 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_19                                          0x4A5 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_20                                          0x4A6 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_21                                          0x4A7 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_22                                          0x4A8 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_23                                          0x4A9 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_24                                          0x4AA // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_25                                          0x4AB // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_26                                          0x4AC // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_27                                          0x4AD // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_28                                          0x4AE // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_29                                          0x4AF // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_30                                          0x4B0 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_31                                          0x4B1 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_32                                          0x4B2 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_33                                          0x4B3 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_34                                          0x4B4 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_35                                          0x4B5 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_36                                          0x4B6 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_37                                          0x4B7 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_38                                          0x4B8 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_39                                          0x4B9 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_40                                          0x4BA // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_41                                          0x4BB // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_42                                          0x4BC // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_43                                          0x4BD // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_44                                          0x4BE // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_45                                          0x4BF // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_46                                          0x4C0 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_47                                          0x4C1 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_48                                          0x4C2 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_49                                          0x4C3 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_50                                          0x4C4 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_51                                          0x4C5 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_52                                          0x4C6 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_53                                          0x4C7 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_54                                          0x4C8 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_55                                          0x4C9 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_56                                          0x4CA // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_57                                          0x4CB // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_58                                          0x4CC // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_59                                          0x4CD // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_60                                          0x4CE // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_61                                          0x4CF // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_62                                          0x4D0 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_63                                          0x4D1 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_64                                          0x4D2 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_65                                          0x4D3 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_66                                          0x4D4 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_67                                          0x4D5 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_68                                          0x4D6 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_69                                          0x4D7 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_70                                          0x4D8 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_71                                          0x4D9 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_72                                          0x4DA // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_73                                          0x4DB // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_74                                          0x4DC // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_75                                          0x4DD // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_76                                          0x4DE // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_77                                          0x4DF // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_78                                          0x4E0 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_79                                          0x4E1 // Unused Flag in vanilla
-#define FLAG_SNAG_SHADOW_80                                          0x4E2 // Unused Flag in vanilla
-
-
+#define FLAG_UNUSED_0x493                                           0x493 // Unused Flag
+#define FLAG_UNUSED_0x494                                           0x494 // Unused Flag
+#define FLAG_UNUSED_0x495                                           0x495 // Unused Flag
+#define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
+#define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
+#define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
+#define FLAG_UNUSED_0x499                                           0x499 // Unused Flag
+#define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag
+#define FLAG_UNUSED_0x49B                                           0x49B // Unused Flag
+#define FLAG_UNUSED_0x49C                                           0x49C // Unused Flag
+#define FLAG_UNUSED_0x49D                                           0x49D // Unused Flag
+#define FLAG_UNUSED_0x49E                                           0x49E // Unused Flag
+#define FLAG_UNUSED_0x49F                                           0x49F // Unused Flag
+#define FLAG_UNUSED_0x4A0                                           0x4A0 // Unused Flag
+#define FLAG_UNUSED_0x4A1                                           0x4A1 // Unused Flag
+#define FLAG_UNUSED_0x4A2                                           0x4A2 // Unused Flag
+#define FLAG_UNUSED_0x4A3                                           0x4A3 // Unused Flag
+#define FLAG_UNUSED_0x4A4                                           0x4A4 // Unused Flag
+#define FLAG_UNUSED_0x4A5                                           0x4A5 // Unused Flag
+#define FLAG_UNUSED_0x4A6                                           0x4A6 // Unused Flag
+#define FLAG_UNUSED_0x4A7                                           0x4A7 // Unused Flag
+#define FLAG_UNUSED_0x4A8                                           0x4A8 // Unused Flag
+#define FLAG_UNUSED_0x4A9                                           0x4A9 // Unused Flag
+#define FLAG_UNUSED_0x4AA                                           0x4AA // Unused Flag
+#define FLAG_UNUSED_0x4AB                                           0x4AB // Unused Flag
+#define FLAG_UNUSED_0x4AC                                           0x4AC // Unused Flag
+#define FLAG_UNUSED_0x4AD                                           0x4AD // Unused Flag
+#define FLAG_UNUSED_0x4AE                                           0x4AE // Unused Flag
+#define FLAG_UNUSED_0x4AF                                           0x4AF // Unused Flag
+#define FLAG_UNUSED_0x4B0                                           0x4B0 // Unused Flag
+#define FLAG_UNUSED_0x4B1                                           0x4B1 // Unused Flag
+#define FLAG_UNUSED_0x4B2                                           0x4B2 // Unused Flag
+#define FLAG_UNUSED_0x4B3                                           0x4B3 // Unused Flag
+#define FLAG_UNUSED_0x4B4                                           0x4B4 // Unused Flag
+#define FLAG_UNUSED_0x4B5                                           0x4B5 // Unused Flag
+#define FLAG_UNUSED_0x4B6                                           0x4B6 // Unused Flag
+#define FLAG_UNUSED_0x4B7                                           0x4B7 // Unused Flag
+#define FLAG_UNUSED_0x4B8                                           0x4B8 // Unused Flag
+#define FLAG_UNUSED_0x4B9                                           0x4B9 // Unused Flag
+#define FLAG_UNUSED_0x4BA                                           0x4BA // Unused Flag
+#define FLAG_UNUSED_0x4BB                                           0x4BB // Unused Flag
+#define FLAG_UNUSED_0x4BC                                           0x4BC // Unused Flag
+#define FLAG_UNUSED_0x4BD                                           0x4BD // Unused Flag
+#define FLAG_UNUSED_0x4BE                                           0x4BE // Unused Flag
+#define FLAG_UNUSED_0x4BF                                           0x4BF // Unused Flag
+#define FLAG_UNUSED_0x4C0                                           0x4C0 // Unused Flag
+#define FLAG_UNUSED_0x4C1                                           0x4C1 // Unused Flag
+#define FLAG_UNUSED_0x4C2                                           0x4C2 // Unused Flag
+#define FLAG_UNUSED_0x4C3                                           0x4C3 // Unused Flag
+#define FLAG_UNUSED_0x4C4                                           0x4C4 // Unused Flag
+#define FLAG_UNUSED_0x4C5                                           0x4C5 // Unused Flag
+#define FLAG_UNUSED_0x4C6                                           0x4C6 // Unused Flag
+#define FLAG_UNUSED_0x4C7                                           0x4C7 // Unused Flag
+#define FLAG_UNUSED_0x4C8                                           0x4C8 // Unused Flag
+#define FLAG_UNUSED_0x4C9                                           0x4C9 // Unused Flag
+#define FLAG_UNUSED_0x4CA                                           0x4CA // Unused Flag
+#define FLAG_UNUSED_0x4CB                                           0x4CB // Unused Flag
+#define FLAG_UNUSED_0x4CC                                           0x4CC // Unused Flag
+#define FLAG_UNUSED_0x4CD                                           0x4CD // Unused Flag
+#define FLAG_UNUSED_0x4CE                                           0x4CE // Unused Flag
+#define FLAG_UNUSED_0x4CF                                           0x4CF // Unused Flag
+#define FLAG_UNUSED_0x4D0                                           0x4D0 // Unused Flag
+#define FLAG_UNUSED_0x4D1                                           0x4D1 // Unused Flag
+#define FLAG_UNUSED_0x4D2                                           0x4D2 // Unused Flag
+#define FLAG_UNUSED_0x4D3                                           0x4D3 // Unused Flag
+#define FLAG_UNUSED_0x4D4                                           0x4D4 // Unused Flag
+#define FLAG_UNUSED_0x4D5                                           0x4D5 // Unused Flag
+#define FLAG_UNUSED_0x4D6                                           0x4D6 // Unused Flag
+#define FLAG_UNUSED_0x4D7                                           0x4D7 // Unused Flag
+#define FLAG_UNUSED_0x4D8                                           0x4D8 // Unused Flag
+#define FLAG_UNUSED_0x4D9                                           0x4D9 // Unused Flag
+#define FLAG_UNUSED_0x4DA                                           0x4DA // Unused Flag
+#define FLAG_UNUSED_0x4DB                                           0x4DB // Unused Flag
+#define FLAG_UNUSED_0x4DC                                           0x4DC // Unused Flag
+#define FLAG_UNUSED_0x4DD                                           0x4DD // Unused Flag
+#define FLAG_UNUSED_0x4DE                                           0x4DE // Unused Flag
+#define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag
+#define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
+#define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
+#define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
 #define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
 #define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
 #define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
@@ -1323,7 +1318,7 @@
 #define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
 #define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
 #define FLAG_UNUSED_0x4ED                                           0x4ED // Unused Flag
-#define FLAG_UNUSED_0x4EE											0x4EE // Unused Flag
+#define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
 #define FLAG_UNUSED_0x4EF                                           0x4EF // Unused Flag
 
 #define FLAG_DEFEATED_RUSTBORO_GYM                                  0x4F0

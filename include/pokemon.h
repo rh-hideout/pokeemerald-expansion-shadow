@@ -116,7 +116,7 @@ struct PokemonSubstruct0
     /*0x08*/ u8 ppBonuses;
     /*0x09*/ u8 friendship;
     /*0x0A*/ u16 pokeball:5; //31 balls
-             u16 shadowId:11;
+             u16 filler:11;
 }; /* size = 12 */
 
 struct PokemonSubstruct1
@@ -148,7 +148,7 @@ struct PokemonSubstruct3
 
  /* 0x02 */ u16 metLevel:7;
  /* 0x02 */ u16 metGame:4;
- /* 0x03 */ u16 boostLevel:4;
+ /* 0x03 */ u16 unused1:4;
  /* 0x03 */ u16 otGender:1;
 
  /* 0x04 */ u32 hpIV:5;
@@ -213,8 +213,10 @@ union __attribute__((packed, aligned(2))) NicknameShadowdata
     u8 nickname[POKEMON_NAME_LENGTH];
     struct Shadowdata
     {
-    	u8 shadowVar; // used for aggro levels (likelihood of entering Reverse Mode) as well as identifying Shadow Lugia's special case
-        u8 isReverse;
+        u8 shadowId:7;
+    	u8 isReverse:1;
+    	u8 shadowVar:4; // used for aggro levels (likelihood of entering Reverse Mode) as well as identifying Shadow Lugia's special case
+    	u8 boostLevel:4; //up to 3 in XD, current code allows for up to 15
         u16 heartValue;
         u16 heartMax;
     } shadowData;
