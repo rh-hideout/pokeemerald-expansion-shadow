@@ -27132,22 +27132,6 @@ Reverse_Mode:
 	call ReverseAuraEffect
 	end
 
-General_WeatherFormChange:
-	createvisualtask AnimTask_IsMonInvisible, 2
-	jumpreteq TRUE, WeatherFormChangeSkipAnim
-	goto WeatherFormChangeContinue
-WeatherFormChangeContinue:
-	monbg ANIM_ATTACKER
-	playsewithpan SE_M_TELEPORT, SOUND_PAN_ATTACKER
-	waitplaysewithpan SE_M_MINIMIZE, SOUND_PAN_ATTACKER, 48
-	createvisualtask AnimTask_TransformMon, 2, 1, 0, 0
-	waitforvisualfinish
-	clearmonbg ANIM_ATTACKER
-	end
-WeatherFormChangeSkipAnim:
-	createvisualtask AnimTask_CastformGfxDataChange, 2, 1
-	end
-
 General_StatsChange:
 	createvisualtask AnimTask_StatsChange, 5
 	waitforvisualfinish
