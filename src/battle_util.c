@@ -671,9 +671,9 @@ void HandleAction_Run(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        if (GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_IS_SHADOW, NULL))
+        if (GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_REVERSE_MODE, NULL))
         {
-            gBattlescriptCurrInstr = BattleScript_TrainerCallToMonShadow;
+            gBattlescriptCurrInstr = BattleScript_TrainerCallToMonReverse;
             gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
         }
         else
@@ -2575,6 +2575,7 @@ enum
     ENDTURN_SLOW_START,
     ENDTURN_PLASMA_FISTS,
     ENDTURN_CUD_CHEW,
+	ENDTURN_REVERSE_MODE,
     ENDTURN_BATTLER_COUNT
 };
 
@@ -3139,6 +3140,25 @@ u8 DoBattlerEndTurnEffects(void)
                 gDisableStructs[gActiveBattler].cudChew = TRUE;
             gBattleStruct->turnEffectsTracker++;
             break;
+        case ENDTURN_REVERSE_MODE:
+        {
+    		u8 rndm = Random() % 3;
+    		u16 hpTick = (gBattleMons[gBattlerAttacker].maxHP / 16) - 1;
+
+            if ((gBattleMons[gActiveBattler].isReverse == TRUE)
+                && gBattleMons[gActiveBattler].hp != 0)
+            {
+                MAGIC_GUARD_CHECK;
+                gBattleMoveDamage = hpTick + rndm;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                BattleScriptExecute(BattleScript_ReverseModeTurnDmg);
+    		    LaunchStatusAnimation(gBattlerAttacker, B_ANIM_REVERSE_MODE);
+                effect++;
+            }
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        }
         case ENDTURN_BATTLER_COUNT:  // done
             gBattleStruct->turnEffectsTracker = 0;
             gBattleStruct->turnEffectsBattlerId++;

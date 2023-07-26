@@ -1947,6 +1947,45 @@ const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
     [NATURE_QUIRKY]  = {    0,      0,      0,      0,      0   },
 };
 
+const s8 gNatureHeartTable[NUM_NATURES][NUM_HEART_REDUCE_METHODS] =
+{                      // Battle   Call    Walk  Daycare  Scent
+    [NATURE_HARDY]   = {   +1,      0,      0,     -2,     -1   },
+    [NATURE_LONELY]  = {   -3,     +1,      0,     -2,     +3   },
+    [NATURE_BRAVE]   = {   +3,     -1,     -1,     -1,     -2   },
+    [NATURE_ADAMANT] = {   +1,     -1,     +1,      0,     -2   },
+    [NATURE_NAUGHTY] = {   +2,     -1,     +1,     -1,     -3   },
+    [NATURE_BOLD]    = {   +1,     -1,     -1,      0,      0   },
+    [NATURE_DOCILE]  = {    0,     +2,     -2,     -1,     +2   },
+    [NATURE_RELAXED] = {   -1,     -1,     +1,     +2,      0   },
+    [NATURE_IMPISH]  = {   +2,      0,      0,     -2,     -2   },
+    [NATURE_LAX]     = {    0,     -1,     -1,     -1,     +1   },
+    [NATURE_TIMID]   = {   -3,     +1,     +1,     +2,     +2   },
+    [NATURE_HASTY]   = {   +3,      0,     -3,     -2,      0   },
+    [NATURE_SERIOUS] = {    0,     +1,     +1,      0,     -1   },
+    [NATURE_JOLLY]   = {   +2,      0,     -1,     -2,     -1   },
+    [NATURE_NAIVE]   = {    0,      0,     +2,     -1,     -2   },
+    [NATURE_MODEST]  = {   -3,      0,     +2,     +2,     +1   },
+    [NATURE_MILD]    = {   -2,     -1,      0,     +1,     +2   },
+    [NATURE_QUIET]   = {    0,      0,      0,      0,      0   },
+    [NATURE_BASHFUL] = {   -2,      0,     -1,     +1,     +3   },
+    [NATURE_RASH]    = {   -1,      0,     -1,      0,     +2   },
+    [NATURE_CALM]    = {   -2,      0,     +1,     +1,     +1   },
+    [NATURE_GENTLE]  = {   -3,      0,     +3,     +2,      0   },
+    [NATURE_SASSY]   = {   +3,     -2,      0,     -1,     -3   },
+    [NATURE_CAREFUL] = {   -1,      0,      0,     +1,     +1   },
+    [NATURE_QUIRKY]  = {   +3,     -1,     -2,     +2,     -1   },
+};
+
+const u8 gShadowAggressionTable[NUM_AGGRO_LEVELS][HEART_GAUGE_SECTIONS] =
+{
+	[SHADOW_AGGRO_NONE]                = { 0,  0,  0,  0,  0,  0},
+    [SHADOW_AGGRO_VERY_LOW]            = {15, 10,  5,  2,  0,  0},
+    [SHADOW_AGGRO_LOW]                 = {20, 15, 10,  5,  0,  0},
+    [SHADOW_AGGRO_MEDIUM]              = {30, 20, 15, 10,  0,  0},
+    [SHADOW_AGGRO_HIGH]                = {40, 25, 15, 10,  0,  0},
+    [SHADOW_AGGRO_VERY_HIGH]           = {50, 35, 20, 10,  0,  0},
+};
+
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/experience_tables.h"
 #include "data/pokemon/species_info.h"
@@ -3324,6 +3363,7 @@ static const s8 sFriendshipEventModifiers[][3] =
     [FRIENDSHIP_EVENT_FAINT_FIELD_PSN] = {-5, -5, -10},
     [FRIENDSHIP_EVENT_FAINT_LARGE]     = {-5, -5, -10},
 };
+
 
 #define HM_MOVES_END 0xFFFF
 
@@ -4820,6 +4860,23 @@ u32 GetMonData(struct Pokemon *mon, s32 field, u8 *data)
         break;
     }
     return ret;
+}
+
+u8 GetShadowAggression(struct BattlePokemon *mon)
+{
+	u8 shadowVar;
+	u8 aggro;
+
+	if (mon->isShadow == TRUE)
+	{
+		shadowVar = mon->shadowVar;
+
+		if (shadowVar > NUM_AGGRO_LEVELS)
+			aggro = SHADOW_AGGRO_VERY_HIGH;
+		else
+			aggro = shadowVar;
+	}
+	return aggro;
 }
 
 u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
@@ -7175,6 +7232,8 @@ u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
     return retVal;
 }
 
+
+
 #define IS_LEAGUE_BATTLE                                                                \
     ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)                                           \
     && (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR    \
@@ -8845,17 +8904,17 @@ u8 GetHeartGaugeSection(u16 heartVal, u16 heartMax)
     #define h50 (heartMax / 2)
     #define h75 ((heartMax / 4) + (heartMax / 2))
     if (heartVal == heartMax)
-        return 5;
+        return HEART_GAUGE_FULL;
     else if (h75 <= heartVal < heartMax)
-        return 4;
+        return HEART_SECTION_4;
     else if (h50 <= heartVal < h75)
-        return 3;
+        return HEART_SECTION_3;
     else if (h25 <= heartVal < h50)
-        return 2;
+        return HEART_SECTION_2;
     else if (0 < heartVal < h25)
-        return 1;
+        return HEART_SECTION_1;
     else if (heartVal == 0)
-        return 0;
+        return HEART_GAUGE_EMPTY;
     #undef h25 
     #undef h50 
     #undef h77
@@ -8870,11 +8929,13 @@ u8 ShdwCanMonGainEXP(struct Pokemon *mon)
     return TRUE;
 }
 
-void ModifyHeartValue(void)
+void ModifyHeartValue(u16 baseValue, u8 methodIndex)
 {
+	u8 nature = GetNatureFromPersonality(gBattleMons[gActiveBattler].personality);
+	u16 decrease = ModifyHeartByNature(nature, baseValue, methodIndex);
     u16 hVal = gBattleMons[gActiveBattler].heartVal;
     u16 hMax = gBattleMons[gActiveBattler].heartMax;
-    u16 newVal = min(max(hVal - 200, 0), hMax);
+    u16 newVal = min(max(hVal - decrease, 0), hMax);
 
     gActiveBattler = gBattleScripting.battler;
 
@@ -8882,4 +8943,37 @@ void ModifyHeartValue(void)
     {
         gBattleMons[gActiveBattler].heartVal = newVal;
     }    
+}
+
+u16 ModifyHeartByNature(u8 nature, u16 heart, u8 methodIndex)
+{
+	u16 retVal;
+
+	switch (gNatureHeartTable[nature][methodIndex - 1])
+	{
+	case 1:
+		retVal = heart * 110;
+		break;
+	case 2:
+		retVal = heart * 120;
+		break;
+	case 3:
+		retVal = heart * 130;
+		break;
+	case -1:
+		retVal = heart * 90;
+		break;
+	case -2:
+		retVal = heart * 80;
+		break;
+	case -3:
+		retVal = heart * 70;
+		break;
+	default:
+		retVal = heart * 100;
+		break;
+	}
+
+	retVal /= 100;
+	return retVal;
 }

@@ -195,6 +195,9 @@ enum
     CONTROLLER_ENDLINKBATTLE,
     CONTROLLER_DEBUGMENU,
     CONTROLLER_HEARTVALUEUPDATE,
+	CONTROLLER_REVERSEMODEENTER,
+	CONTROLLER_REVERSEMODEDAMAGE,
+	CONTROLLER_REVERSEMODECALL,
     /*new controllers should go here*/
     CONTROLLER_TERMINATOR_NOP,
     CONTROLLER_CMDS_COUNT
@@ -255,6 +258,7 @@ void BtlController_EmitResetActionMoveSelection(u8 bufferId, u8 caseId);
 void BtlController_EmitEndLinkBattle(u8 bufferId, u8 battleOutcome);
 void BtlController_EmitDebugMenu(u8 bufferId);
 void BtlController_EmitHeartValueUpdate(u8 bufferId, u8 partyId, s32 amount);
+void BtlController_EmitReverseModeAnim(u8 bufferId, u8 action);
 
 // player controller
 void SetControllerToPlayer(void);

@@ -2103,9 +2103,14 @@
 	various \battler, VARIOUS_TRY_TRAINER_SLIDE_MSG_MEGA_EVOLUTION
 	.endm
 
-	.macro modifyheartvalue battler:req amount:req
-	various \battler, VARIOUS_MODIFY_HEART_VALUE
-	.4byte \amount
+	.macro modifyheartvaluesendout battler:req baseamount:req
+	various \battler, VARIOUS_MODIFY_HEART_VALUE_SENDOUT
+	.4byte \baseamount
+	.endm
+
+	.macro modifyheartvaluecall battler:req baseamount:req
+	various \battler, VARIOUS_MODIFY_HEART_VALUE_CALL
+	.4byte \baseamount
 	.endm
 
 @ helpful macros

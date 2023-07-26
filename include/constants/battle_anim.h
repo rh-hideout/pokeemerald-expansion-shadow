@@ -397,6 +397,8 @@
 #define ANIM_TAG_STEEL_BEAM                 (ANIM_SPRITES_START + 383)
 #define ANIM_TAG_POLTERGEIST                (ANIM_SPRITES_START + 384)
 #define ANIM_TAG_TEAPOT                     (ANIM_SPRITES_START + 385)
+#define ANIM_TAG_SHADOW_PARTICLES           (ANIM_SPRITES_START + 386)
+#define ANIM_TAG_REVERSE_PARTICLES          (ANIM_SPRITES_START + 387)
 
 
 // battlers
@@ -508,7 +510,8 @@
 #define BG_STEEL_BEAM_OPPONENT 78
 #define BG_STEEL_BEAM_PLAYER 79
 #define BG_CHLOROBLAST 80
-#define BG_SHADOWSTORM 81
+#define BG_SHADOW 81
+#define BG_SHADOWSTORM 82
 
 // table ids for general animations (gBattleAnims_General)
 #define B_ANIM_STATS_CHANGE             0
@@ -572,6 +575,9 @@
 #define B_ANIM_STATUS_CURSED            7
 #define B_ANIM_STATUS_NIGHTMARE         8
 #define B_ANIM_STATUS_WRAPPED           9 // does not actually exist
+#define B_ANIM_SHADOW_IDENTIFY          10
+#define B_ANIM_ENTER_REVERSE_MODE       11
+#define B_ANIM_REVERSE_MODE             12
 
 // Tasks with return values often assign them to gBattleAnimArgs[7].
 #define ARG_RET_ID 7

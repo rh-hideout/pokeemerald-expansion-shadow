@@ -674,6 +674,7 @@ const u16 gBattleInterface_BallStatusBarPal[] = INCBIN_U16("graphics/battle_inte
 const u16 gBattleInterface_BallDisplayPal[] = INCBIN_U16("graphics/battle_interface/ball_display.gbapal");
 
 const u16 gBattleInterface_ShadowMenuPal[] = INCBIN_U16("graphics/battle_interface/shadow_menu.gbapal");
+const u16 gBattleInterface_ReverseMenuPal[] = INCBIN_U16("graphics/battle_interface/reverse_menu.gbapal");
 
 const u8 gHealthboxElementsGfxTable[] = INCBIN_U8("graphics/battle_interface/hpbar.4bpp",
                                                   "graphics/battle_interface/expbar.4bpp",
@@ -1260,6 +1261,10 @@ const u32 gBattleAnimSpritePal_FlatRock[] = INCBIN_U32("graphics/battle_anims/sp
 
 const u32 gBattleAnimUnusedPal_Unknown2[] = INCBIN_U32("graphics/battle_anims/unused/unknown_2.gbapal.lz");
 
+const u32 gBattleAnimSpriteGfx_ShadowParticles[] = INCBIN_U32("graphics/battle_anims/sprites/shadowparticles.4bpp.lz");
+const u32 gBattleAnimSpritePal_ShadowParticles[] = INCBIN_U32("graphics/battle_anims/sprites/shadowparticles.gbapal.lz");
+const u32 gBattleAnimSpritePal_ReverseShadowParticles[] = INCBIN_U32("graphics/battle_anims/sprites/reverse_shadowparticles.gbapal.lz");
+
 #include "data/graphics/pokemon.h"
 #include "data/graphics/trainers.h"
 
@@ -1547,6 +1552,9 @@ const u32 gBattleAnimBgTilemap_ZMoveMountain[] = INCBIN_U32("graphics/battle_ani
 const u32 gBattleAnimBgPalette_SteelBeam[] = INCBIN_U32("graphics/battle_anims/backgrounds/steel_beam.gbapal.lz");
 
 const u32 gBattleAnimBgPalette_ShadowStorm[] = INCBIN_U32("graphics/battle_anims/backgrounds/shadowstorm.gbapal.lz");
+const u32 gBattleAnimBgImage_ShadowMoves[] = INCBIN_U32("graphics/battle_anims/backgrounds/shadowbg.4bpp.lz");
+const u32 gBattleAnimBgPalette_ShadowMoves[] = INCBIN_U32("graphics/battle_anims/backgrounds/shadowbg.gbapal.lz");
+const u32 gBattleAnimBgTilemap_ShadowMoves[] = INCBIN_U32("graphics/battle_anims/backgrounds/shadowbg.bin.lz");
 
 // misc
 const u32 gBerryBlenderCenter_Gfx[] = INCBIN_U32("graphics/berry_blender/center.8bpp.lz");

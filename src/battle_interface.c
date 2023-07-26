@@ -2102,15 +2102,15 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     u32 windowId, spriteTileNum, species;
     u8 *windowTileData;
     u8 gender;
-    u8 shadow;
+    u8 reverse;
     struct Pokemon *illusionMon = GetIllusionMonPtr(gSprites[healthboxSpriteId].hMain_Battler);
     if (illusionMon != NULL)
         mon = illusionMon;
 
-    shadow = GetMonData(mon, MON_DATA_IS_SHADOW);
-    if (shadow != 0)
+    reverse = GetMonData(mon, MON_DATA_REVERSE_MODE);
+    if (reverse == TRUE)
     {
-        StringCopy(gDisplayedStringBattle, gText_HealthboxShadow);
+        StringCopy(gDisplayedStringBattle, gText_HealthboxReverse);
     }
     else
     {

@@ -807,6 +807,10 @@ static const u8 sText_ShadowPkmnNotice[] = _("Oh!\nA Shadow Pokémon!\p");
 static const u8 sText_TrainerCallToMon[] = _("{B_ATK_TRAINER_NAME} called out to {B_ATK_NAME_WITH_PREFIX}!");
 static const u8 sText_PkmnStoredEXP[] = _("{B_BUFF1} stored{B_BUFF2}\n{B_BUFF3} EXP. Points!\p");
 static const u8 sText_PkmnHeartValueUpdate[] = _("The door to {B_BUFF1}'s\nheart opened a little!\p");
+static const u8 sText_ReverseModeEnter[] = _("{B_ATK_NAME_WITH_PREFIX}'s emotions rose to a\nfever pitch! It entered Reverse Mode!");
+static const u8 sText_ReverseModeDamage[] = _("{B_ATK_NAME_WITH_PREFIX} is hurt by Reverse Mode!");
+static const u8 sText_ReverseModeCalled[] = _("{B_ATK_NAME_WITH_PREFIX} came to its senses!");
+
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -1470,6 +1474,9 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_SHADOW_SKYCONTINUES - BATTLESTRINGS_TABLE_START] = sText_ShadowSkyContinues,
     [STRINGID_SHADOW_SKYSTOPPED - BATTLESTRINGS_TABLE_START] = sText_ShadowSkyStopped,
     [STRINGID_SHADOW_SKYDAMAGE - BATTLESTRINGS_TABLE_START] = sText_ShadowSkyDamage,
+	[STRINGID_REVERSEMODE_ENTER - BATTLESTRINGS_TABLE_START] = sText_ReverseModeEnter,
+	[STRINGID_REVERSEMODE_DAMAGE - BATTLESTRINGS_TABLE_START] = sText_ReverseModeDamage,
+	[STRINGID_REVERSEMODE_CALLED - BATTLESTRINGS_TABLE_START] = sText_ReverseModeCalled,
 };
 
 const u16 gTrainerUsedItemStringIds[] =

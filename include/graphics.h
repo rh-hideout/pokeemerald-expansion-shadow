@@ -9262,6 +9262,7 @@ extern const u32 gBattleInterface_BallStatusBarGfx[];
 extern const u8 gBattleInterface_BallDisplayGfx[];
 extern const u16 gBattleInterface_BallStatusBarPal[];
 extern const u16 gBattleInterface_ShadowMenuPal[];
+extern const u16 gBattleInterface_ReverseMenuPal[];
 extern const u16 gBattleInterface_BallDisplayPal[];
 extern const u8 gHealthboxElementsGfxTable[][32];
 
@@ -10132,6 +10133,11 @@ extern const u32 gBattleAnimSpritePal_ZMoveSymbol[];
 extern const u32 gBattleAnimSpriteGfx_Teapot[];
 extern const u32 gBattleAnimSpritePal_Teapot[];
 
+//Shadow Pokemon
+extern const u32 gBattleAnimSpriteGfx_ShadowParticles[];
+extern const u32 gBattleAnimSpritePal_ShadowParticles[];
+extern const u32 gBattleAnimSpritePal_ReverseShadowParticles[];
+
 extern const u32 gBattleAnimBgImage_Dark[];
 extern const u32 gBattleAnimBgImage_Ghost[];
 extern const u32 gBattleAnimBgImage_Psychic[];
@@ -10305,6 +10311,9 @@ extern const u32 gBattleAnimSpritePal_SteelBeam[];
 extern const u32 gBattleAnimBgPalette_SteelBeam[];
 
 extern const u32 gBattleAnimBgPalette_ShadowStorm[];
+extern const u32 gBattleAnimBgImage_ShadowMoves[];
+extern const u32 gBattleAnimBgPalette_ShadowMoves[];
+extern const u32 gBattleAnimBgTilemap_ShadowMoves[];
 
 extern const u32 gMetalShineGfx[];
 extern const u32 gMetalShinePalette[];
