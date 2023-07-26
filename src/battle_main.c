@@ -3805,7 +3805,7 @@ static void DoBattleIntro(void)
                     HandleSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gActiveBattler].species), FLAG_SET_SEEN, gBattleMons[gActiveBattler].personality);
                     if (gBattleMons[gActiveBattler].isShadow)
                     {
-                        LaunchStatusAnimation(gActiveBattler, B_ANIM_STATUS_PSN);
+                        LaunchStatusAnimation(gActiveBattler, B_ANIM_SHADOW_IDENTIFY);
                         PrepareStringBattle(STRINGID_SHADOWPKMNNOTICE, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT));
                     }
                 }
@@ -3940,18 +3940,19 @@ static void TryDoEventsBeforeFirstTurn(void)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        gBattleMons[i].status2 &= ~STATUS2_FLINCHED;
-
-    	u16 decrease = ModifyHeartByNature(&gBattlemons[i].nature, 100, HEART_REDUCE_SENDOUT)
-
-        u16 hVal = gBattleMons[i].heartVal;
-        u16 hMax = gBattleMons[i].heartMax;
-        u16 newVal = min(max(hVal - decrease, 0), hMax);
 
         if (gBattleMons[i].isShadow)
         {
+    	    u8 nature = GetNatureFromPersonality(gBattleMons[i].personality);
+    	    u16 decrease = ModifyHeartByNature(nature, 100, HEART_REDUCE_SENDOUT);
+            u16 hVal = gBattleMons[i].heartVal;
+            u16 hMax = gBattleMons[i].heartMax;
+            u16 newVal = min(max(hVal - decrease, 0), hMax);
+
             gBattleMons[i].heartVal = newVal;
         }
+
+        gBattleMons[i].status2 &= ~STATUS2_FLINCHED;
 
     }
 

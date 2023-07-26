@@ -6142,7 +6142,7 @@ static void Cmd_moveend(void)
         }
         case MOVEEND_ENTER_REVERSE_MODE:
         {
-        	if (gBattleMoves[gCurrentMove].type != TYPE_SHADOW && gBattleMons[gBattlerAttacker].isReverse == FALSE && GetBattlerSide(gBattlerAttacker) != B_SIDE_OPPONENT)
+        	if (gBattleMons[gBattlerAttacker].isShadow == TRUE && gBattleMons[gBattlerAttacker].isReverse == FALSE && GetBattlerSide(gBattlerAttacker) != B_SIDE_OPPONENT)
         	{
         		u16 heartMax = gBattleMons[gBattlerAttacker].heartMax;
         		u16 heartVal = gBattleMons[gBattlerAttacker].heartVal;
@@ -6156,11 +6156,14 @@ static void Cmd_moveend(void)
         		if (roll < chance)
         		{
         		    gBattleMons[gBattlerAttacker].isReverse = TRUE;
-        		    BtlController_EmitReverseModeAnim(BUFFER_A, SHADOW_ANIM_ENTERED_REVERSE_MODE);
+                    BtlController_EmitSetMonData(BUFFER_A, REQUEST_REVERSE_MODE_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].isReverse), &gBattleMons[gActiveBattler].isReverse);
+                    PrepareStringBattle(STRINGID_REVERSEMODE_ENTER, gBattlerAttacker);
+        		    LaunchStatusAnimation(gBattlerAttacker, B_ANIM_ENTER_REVERSE_MODE);
+                    UpdateHealthboxAttribute(gHealthboxSpriteIds[gBattlerAttacker], &gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], HEALTHBOX_NICK);
         		}
 
         	}
-            gBattlescripting.moveendState++;
+            gBattleScripting.moveendState++;
             break;
         }
         case MOVEEND_EJECT_BUTTON:
@@ -7145,8 +7148,20 @@ static void Cmd_switchineffects(void)
     gSpecialStatuses[gActiveBattler].faintedHasReplacement = FALSE;
 
     if (!BattlerHasAi(gActiveBattler))
-    	ModifyHeartValue(100, HEART_REDUCE_SENDOUT);
+    {
+    	u8 nature = GetNatureFromPersonality(gBattleMons[gActiveBattler].personality);
+    	u16 decrease = ModifyHeartByNature(nature, 100, HEART_REDUCE_SENDOUT);
+        u16 hVal = gBattleMons[gActiveBattler].heartVal;
+        u16 hMax = gBattleMons[gActiveBattler].heartMax;
+        u16 newVal = min(max(hVal - decrease, 0), hMax);
+
+        if (gBattleMons[gActiveBattler].isShadow)
+        {
+            gBattleMons[gActiveBattler].heartVal = newVal;
+            BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], -decrease);
+        }
         gBattleStruct->appearedInBattle |= gBitTable[gBattlerPartyIndexes[gActiveBattler]];
+    }
 
     // Neutralizing Gas announces itself before hazards
     if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS && gSpecialStatuses[gActiveBattler].announceNeutralizingGas == 0)
@@ -11295,6 +11310,10 @@ static void Cmd_various(void)
     case VARIOUS_MODIFY_HEART_VALUE_SENDOUT:
     {
         VARIOUS_ARGS(u16 baseamount);
+
+        u8 nature = GetNatureFromPersonality(gBattleMons[gActiveBattler].personality);
+        u16 amount = ModifyHeartByNature(nature, cmd->baseamount, HEART_REDUCE_SENDOUT);
+
         switch (gBattleScripting.heartValueState)
         {
             case 0:
@@ -11318,11 +11337,8 @@ static void Cmd_various(void)
                     gActiveBattler = 0;
                 }
 
-                u8 nature = gBattleMons[gActiveBattler].nature;
-                u16 amount = ModifyHeartByNature(nature, baseamount, HEART_REDUCE_SENDOUT)
-
-                gBattleMons[gActiveBattler].heartVal -= cmd->amount;
-                BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], cmd->amount);
+                gBattleMons[gActiveBattler].heartVal -= amount;
+                BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], -amount);
                 MarkBattlerForControllerExec(gActiveBattler);
 
                 gBattleScripting.heartValueState++;
@@ -11350,6 +11366,10 @@ static void Cmd_various(void)
     case VARIOUS_MODIFY_HEART_VALUE_CALL:
     {
         VARIOUS_ARGS(u16 baseamount);
+
+        u8 nature = GetNatureFromPersonality(gBattleMons[gActiveBattler].personality);
+        u16 amount = ModifyHeartByNature(nature, cmd->baseamount, HEART_REDUCE_CALL);
+
         switch (gBattleScripting.heartValueState)
         {
             case 0:
@@ -11373,12 +11393,10 @@ static void Cmd_various(void)
                     gActiveBattler = 0;
                 }
 
-                u8 nature = gBattleMons[gActiveBattler].nature;
-                u16 amount = ModifyHeartByNature(nature, baseamount, HEART_REDUCE_CALL)
-
                 gBattleMons[gActiveBattler].isReverse = FALSE;
-                gBattleMons[gActiveBattler].heartVal -= cmd->amount;
-                BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], cmd->amount);
+                BtlController_EmitSetMonData(BUFFER_A, REQUEST_REVERSE_MODE_BATTLE, 0, sizeof(gBattleMons[gActiveBattler].isReverse), &gBattleMons[gActiveBattler].isReverse);
+                gBattleMons[gActiveBattler].heartVal -= amount;
+                BtlController_EmitHeartValueUpdate(BUFFER_A, gBattlerPartyIndexes[gActiveBattler], -amount);
                 MarkBattlerForControllerExec(gActiveBattler);
 
                 gBattleScripting.heartValueState++;
@@ -11401,6 +11419,7 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr = cmd->nextInstr;
             }
         }
+        UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler], &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], HEALTHBOX_NICK);
         return;
     }
     case VARIOUS_SET_SHADOW_SKY:

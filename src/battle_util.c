@@ -671,7 +671,7 @@ void HandleAction_Run(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        if (GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_IS_REVERSE, NULL))
+        if (GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattlerAttacker]], MON_DATA_REVERSE_MODE, NULL))
         {
             gBattlescriptCurrInstr = BattleScript_TrainerCallToMonReverse;
             gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
@@ -3193,6 +3193,7 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_REVERSE_MODE:
+        {
     		u8 rndm = Random() % 3;
     		u16 hpTick = (gBattleMons[gBattlerAttacker].maxHP / 16) - 1;
 
@@ -3204,10 +3205,12 @@ u8 DoBattlerEndTurnEffects(void)
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
                 BattleScriptExecute(BattleScript_ReverseModeTurnDmg);
+    		    LaunchStatusAnimation(gBattlerAttacker, B_ANIM_REVERSE_MODE);
                 effect++;
             }
             gBattleStruct->turnEffectsTracker++;
             break;
+        }
         case ENDTURN_BATTLER_COUNT:  // done
             gBattleStruct->turnEffectsTracker = 0;
             gBattleStruct->turnEffectsBattlerId++;

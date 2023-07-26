@@ -8876,8 +8876,8 @@ u8 ShdwCanMonGainEXP(struct Pokemon *mon)
 
 void ModifyHeartValue(u16 baseValue, u8 methodIndex)
 {
-	u16 decrease = ModifyHeartByNature(&gBattlemons[gActiveBattler].nature, baseValue, methodIndex)
-
+	u8 nature = GetNatureFromPersonality(gBattleMons[gActiveBattler].personality);
+	u16 decrease = ModifyHeartByNature(nature, baseValue, methodIndex);
     u16 hVal = gBattleMons[gActiveBattler].heartVal;
     u16 hMax = gBattleMons[gActiveBattler].heartMax;
     u16 newVal = min(max(hVal - decrease, 0), hMax);

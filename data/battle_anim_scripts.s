@@ -926,6 +926,9 @@ gBattleAnims_StatusConditions::
 	.4byte Status_Curse                     @ B_ANIM_STATUS_CURSED
 	.4byte Status_Nightmare                 @ B_ANIM_STATUS_NIGHTMARE
 	.4byte Status_Powder
+	.4byte Shadow_Identify                  @ B_ANIM_SHADOW_IDENTIFY
+	.4byte Enter_Reverse_Mode               @ B_ANIM_ENTER_REVERSE_MODE
+	.4byte Reverse_Mode                     @ B_ANIM_REVERSE_MODE
 
 	.align 2
 gBattleAnims_General::
@@ -16451,14 +16454,47 @@ Move_PSYBLADE::
 Move_HYDRO_STEAM::
 	end @to do
 
+ShadowAuraEffect:
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -24, 26, 2
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 14, 28, 1
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -5, 10, 2
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 26, 3
+	delay 4
+	createsprite gShadowParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -12, 0, 1
+	return
+
+ReverseAuraEffect:
+	createsprite gReverseModeParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -24, 26, 2
+	delay 4
+	createsprite gReverseModeParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 14, 28, 1
+	delay 4
+	createsprite gReverseModeParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -5, 10, 2
+	delay 4
+	createsprite gReverseModeParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 26, 3
+	delay 4
+	createsprite gReverseModeParticleSpriteTemplate, ANIM_ATTACKER, 2, 0, -12, 0, 1
+	return
+
+
+
 Move_SHADOW_BLITZ::
-	loadspritegfx ANIM_TAG_PURPLE_FLAME
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
 	monbg ANIM_ATTACKER
 	splitbgprio_all
-	fadetobg BG_GHOST
+	fadetobg BG_SHADOW
 	playsewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER
 	waitbgfadein
-	createvisualtask AnimTask_GrudgeFlames, 3
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	call ShadowAuraEffect
+	delay 8
+	call ShadowAuraEffect
+	delay 8
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	call ShadowAuraEffect
+	delay 8
 	loopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 16, 4
 	loadspritegfx ANIM_TAG_IMPACT
 	monbg ANIM_TARGET
@@ -16479,7 +16515,7 @@ Move_SHADOW_BLITZ::
 Move_SHADOW_WAVE::
 	loadspritegfx ANIM_TAG_DRAGON_PULSE
 	monbg ANIM_TARGET
-	fadetobg BG_GHOST
+	fadetobg BG_SHADOW
 	setalpha 12, 8
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, 1, 1, 0, 7, RGB_BLACK
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_DRAGON_PULSE, 0, 12, 12, RGB(14, 0, 8)
@@ -16510,15 +16546,18 @@ Move_SHADOW_WAVE::
 	end
 
 Move_SHADOW_RUSH::
-	loadspritegfx ANIM_TAG_PURPLE_FLAME
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
 	monbg ANIM_ATTACKER
 	splitbgprio_all
-	fadetobg BG_GHOST
+	fadetobg BG_SHADOW
 	playsewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER
 	waitbgfadein
-	createvisualtask AnimTask_GrudgeFlames, 3
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	call ShadowAuraEffect
 	loopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 16, 4
-	delay 10
+	delay 8
+	call ShadowAuraEffect
+	delay 2
 	loadspritegfx ANIM_TAG_SLAM_HIT
 	loadspritegfx ANIM_TAG_IMPACT
 	monbg ANIM_TARGET
@@ -16549,7 +16588,7 @@ Move_SHADOW_RAVE::
 	loadspritegfx ANIM_TAG_ICICLE_SPEAR
 	createvisualtask AnimTask_HorizontalShake, 3, 5, 10, 50
 	createvisualtask AnimTask_HorizontalShake, 3, 1, 10, 50
-	fadetobg BG_GHOST
+	fadetobg BG_SHADOW
 	playsewithpan SE_M_EARTHQUAKE, SOUND_PAN_TARGET
 	delay 40
 	loopsewithpan 145, SOUND_PAN_TARGET 11, 3
@@ -16579,7 +16618,7 @@ Move_SHADOW_RAVE::
 Move_SHADOW_FIRE::
 	loadspritegfx ANIM_TAG_SHADOW_BALL
 	loadspritegfx ANIM_TAG_SMALL_EMBER
-	fadetobg BG_GHOST
+	fadetobg BG_SHADOW
 	waitbgfadein
 	delay 15
 	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_MIST, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 5, 5, 0, 5
@@ -16602,6 +16641,7 @@ Move_SHADOW_CHILL::
 	splitbgprio ANIM_TARGET
 	setalpha 12, 8
 	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	fadetobg BG_SHADOW
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_ICE_CRYSTALS, 0, 12, 12, RGB(16, 0, 31)
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 1, 0, 7, RGB_BLACK
 	waitforvisualfinish
@@ -16640,9 +16680,10 @@ Move_SHADOW_BOLT::
 	loadspritegfx ANIM_TAG_SPARK
 	loadspritegfx ANIM_TAG_SHOCK_3
 	loadspritegfx ANIM_TAG_SPARK_2
-	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_SPARK, 0, 12, 12, RGB(13, 0, 31)
-	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_SHOCK_3, 0, 12, 12, RGB(13, 0, 31)
-	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_SPARK_2, 0, 12, 12, RGB(13, 0, 31)
+	fadetobg BG_SHADOW
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_SPARK, 0, 12, 12, RGB(26, 43, 31)
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_SHOCK_3, 0, 12, 12, RGB(26, 43, 31)
+	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_SPARK_2, 0, 12, 12, RGB(26, 43, 31)
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 0, 0, 6, RGB_BLACK
 	waitforvisualfinish
 	delay 10
@@ -16686,6 +16727,7 @@ Move_SHADOW_BOLT::
 	delay 20
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 0, 6, 0, RGB_BLACK
 	waitforvisualfinish
+	restorebg
 	end
 
 Move_SHADOW_STORM::
@@ -16744,11 +16786,17 @@ Move_SHADOW_BLAST::
 
 Move_SHADOW_BREAK::
 	loadspritegfx ANIM_TAG_IMPACT
-	loadspritegfx ANIM_TAG_PURPLE_FLAME
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
 	fadetobgfromset BG_GIGA_IMPACT_OPPONENT, BG_GIGA_IMPACT_PLAYER, BG_GIGA_IMPACT_OPPONENT
 	waitbgfadein
-	createvisualtask AnimTask_GrudgeFlames, 3
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	call ShadowAuraEffect
 	loopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 16, 4
+	delay 8
+	call ShadowAuraEffect
+	delay 8
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	call ShadowAuraEffect
 	delay 10
 	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 0x0
 	playsewithpan SE_M_HEADBUTT, SOUND_PAN_ATTACKER
@@ -16769,13 +16817,15 @@ Move_SHADOW_BREAK::
 
 Move_SHADOW_END::
 	loadspritegfx ANIM_TAG_IMPACT
-	loadspritegfx ANIM_TAG_PURPLE_FLAME
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
 	playsewithpan SE_M_SWIFT, SOUND_PAN_ATTACKER
 	fadetobg BG_SHADOWSTORM
 	createsprite gComplexPaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_ATTACKER, 4, 2, RGB_WHITE, 10, RGB_BLACK, 0
 	waitforvisualfinish
 	delay 10
-	createvisualtask AnimTask_GrudgeFlames, 3
+	call ShadowAuraEffect
+	delay 8
+	call ShadowAuraEffect
 	loopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 16, 4
 	delay 10
 	playsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER
@@ -16934,17 +16984,21 @@ Move_SHADOW_SHED::
 	loadspritegfx ANIM_TAG_WATER_ORB
 	loadspritegfx ANIM_TAG_BLUE_LIGHT_WALL @Screen
 	loadspritegfx ANIM_TAG_TORN_METAL @Broken Screen
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_STONE_EDGE, 0, 12, 12, RGB(0, 6, 31)
 	createvisualtask AnimTask_BlendParticle, 5, ANIM_TAG_WATER_ORB, 0, 12, 12, RGB(31, 9, 0)
 	choosetwoturnanim ShadowShedShatteredWall ShadowShedShatteredWall
 ShadowShedNormal:
 	createsprite gStoneEdgeSpriteTemplate, 130, 7, 0, 28, 528, 30, 13, 50, 1
 	loopsewithpan SE_M_BIND, SOUND_PAN_TARGET, 15, 4
+	call ShadowAuraEffect
 	delay 2
 	createsprite gStoneEdgeSpriteTemplate, 130, 7, 0, 32, 480, 20, 16, -46, 1
 	delay 2
 	createsprite gStoneEdgeSpriteTemplate, 130, 7, 0, 33, 576, 20, 8, 42, 1
-	delay 12
+	delay 4
+	call ShadowAuraEffect
+	delay 8
 	delay 2
 	createsprite gStoneEdgeSpriteTemplate, 130, 7, 0, 31, 400, 25, 11, -42, 1
 	delay 2
@@ -16989,11 +17043,14 @@ ShadowShedShatteredWall:
 	createsprite gStoneEdgeSpriteTemplate, 130, 7, 0, 28, 528, 30, 13, 50, 1
 	createsprite gBrickBreakWallSpriteTemplate, ANIM_ATTACKER, 3, ANIM_TARGET, 0, 0, 90, 10
 	loopsewithpan SE_M_BIND, SOUND_PAN_TARGET, 15, 4
+	call ShadowAuraEffect
 	delay 2
 	createsprite gStoneEdgeSpriteTemplate, 130, 7, 0, 32, 480, 20, 16, -46, 1
 	delay 2
 	createsprite gStoneEdgeSpriteTemplate, 130, 7, 0, 33, 576, 20, 8, 42, 1
-	delay 12
+	delay 4
+	call ShadowAuraEffect
+	delay 8
 	delay 2
 	createsprite gStoneEdgeSpriteTemplate, 130, 7, 0, 31, 400, 25, 11, -42, 1
 	delay 2
@@ -26953,6 +27010,8 @@ UnsetSolarBeamBg:
 	waitbgfadein
 	return
 
+
+
 Status_Poison:
 	loopsewithpan SE_M_TOXIC, SOUND_PAN_TARGET, 13, 6
 	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
@@ -27035,6 +27094,42 @@ Status_Nightmare:
 	end
 
 Status_Powder:
+	end
+
+Shadow_Identify:
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loopsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_TARGET, 13, 6
+	call ShadowAuraEffect
+	delay 8
+	call ShadowAuraEffect
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(22, 22, 31)
+	delay 8
+	call ShadowAuraEffect
+	waitforvisualfinish
+	end
+
+Enter_Reverse_Mode:
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loadspritegfx ANIM_TAG_REVERSE_PARTICLES
+	loopsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_TARGET, 13, 6
+	call ShadowAuraEffect
+	delay 8
+	playsewithpan SE_M_MEGA_KICK, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 18, 2
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 2, 2, 0, 12, RGB(25, 0, 11)
+	call ReverseAuraEffect
+	delay 8
+	call ReverseAuraEffect
+	waitforvisualfinish
+	end
+
+Reverse_Mode:
+	loadspritegfx ANIM_TAG_SHADOW_PARTICLES
+	loadspritegfx ANIM_TAG_REVERSE_PARTICLES
+	loopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 5, 2
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 10, 1
+	call ReverseAuraEffect
 	end
 
 General_WeatherFormChange:
