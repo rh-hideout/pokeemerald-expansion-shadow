@@ -1,3 +1,16 @@
+# WARNING
+
+The project to add Shadow Pokemon functionality to `pokeemerald-expansion` does not have any community members actively or visibly working on it.
+
+**As such, this repository has been put into maintenance mode.**
+
+Be warned that:
+
+- The functionality in this repository is **NOT** supported or endorsed in current `pokemerald-expansion` in any way. We don't know if it works at all.
+- There are very few active community members who are able to assist with any of the functionality in this repository.
+
+Shadow Pokemon were [voted by the Senate](https://discord.com/channels/419213663107416084/1103348404962213988/1374461550391328831) to be within `pokemerald-expansion`'s scope. If you are interested in completing this project, please reach out to a Senate member in the existing [Discord discussion thread](https://discord.com/channels/419213663107416084/1103348404962213988).
+
 # Shadow Pokemon
 This repo implements Shadow Pokemon. It requires (and is built upon) the RHH Expansion.
 
